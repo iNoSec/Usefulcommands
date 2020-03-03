@@ -1,0 +1,38 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>EventCreate</title>
+</head><body>Enables an administrator to create a custom event in a specified event log.<br/>
+<br/>
+Syntax<br/>
+eventcreate [/s Computer [/u Domain\User [/p Password]] {[/l {APPLICATION|SYSTEM}]|[/so SrcName]} /t {ERROR|WARNING|INFORMATION|SUCCESSAUDIT|FAILUREAUDIT} /id EventID /d Description<br/>
+<br/>
+Parameters<br/>
+/s Computer : Specifies the name or IP address of a remote computer (do not use backslashes). The default is the local computer.<br/>
+<br/>
+/u Domain \ User : 	Runs the command with the account permissions of the user specified by User or Domain\User. 			The default is the permissions of the current logged on user on the computer issuing the command.<br/>
+<br/>
+/p Password : 		Specifies the password of the user account that is specified in the /u parameter.<br/>
+<br/>
+/l { APPLICATION | SYSTEM } : Specifies the name of the event log where the event will be created. The valid log names are APPLICATION and SYSTEM.<br/>
+<br/>
+/so SrcName : 		Specifies the source to use for the event. A valid source can be any string and should represent the application or component that is generating the event.<br/>
+<br/>
+/t { ERROR | WARNING | INFORMATION | SUCCESSAUDIT | FAILUREAUDIT } : Specifies the type of event to create. The valid types are ERROR, WARNING, INFORMATION, SUCCESSAUDIT, and FAILUREAUDIT.<br/>
+<br/>
+/id EventID :		 Specifies the event ID for the event. A valid ID is any number from 1 to 65535.<br/>
+/d Description :	 	Specifies the description to use for the newly created event.<br/>
+/? : 				Displays help at the command prompt.<br/>
+<br/>
+Remarks<br/>
+Custom events cannot be written to the security log.<br/>
+Examples<br/>
+The following examples show how you can use the eventcreate command:<br/>
+<br/>
+eventcreate /t error /id 100 /l application /d &quot;Create event in application log&quot;<br/>
+eventcreate /t information /id 1000 /so winmgmt /d &quot;Create event in WinMgmt source&quot;<br/>
+eventcreate /t error /id 2001 /so winword /l application /d &quot;new src Winword in application log&quot;<br/>
+eventcreate /s server /t error /id 100 /l application /d &quot;Remote machine without user credentials&quot;<br/>
+eventcreate /s server /u user /p password /id 100 /t error /l application /d &quot;Remote machine with user credentials&quot;<br/>
+eventcreate /s server1 /s server2 /u user /p password /id 100 /t error /so winmgmt /d &quot;Creating events on Multiple remote machines&quot;<br/>
+eventcreate /s server /u user /id 100 /t warning /so winmgmt /d &quot;Remote machine with partial user credentials&quot;</body></html>

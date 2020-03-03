@@ -1,0 +1,22 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>smbclient / smbmount</title>
+</head><body>This is in reference to the smbclient tool by Impacket<br/>
+<br/>
+Get all files from an smb connection<br/>
+per the <a href="https://www.samba.org/samba/docs/man/manpages-3/smbclient.1.html">smbclient manpage</a>, you need to use the mget command, with a mask and recursion and prompt set. Then cd to the directory you want to get recursively<br/>
+ smbclient '\\server\share'<br/>
+ mask &quot;&quot;<br/>
+ recurse ON<br/>
+ prompt OFF<br/>
+ cd 'path\to\remote\dir'<br/>
+ lcd '~/path/to/download/to/' mget * <br/>
+or, all on one line,<br/>
+smbclient '\\server\share' -N -c 'prompt OFF;recurse ON;cd 'path\to\directory\';lcd '~/path/to/download/to/';mget *'<br/>
+If you need a password, do not use the -N flag<br/>
+<br/>
+<br/>
+<br/>
+Mount Remote Windows Share:<br/>
+smbmount //X.X.X.X/c$ /mnt/remote/ -o username=user,password=pass,rw</body></html>

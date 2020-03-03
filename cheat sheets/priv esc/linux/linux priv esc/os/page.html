@@ -1,0 +1,31 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>OS</title>
+</head><body>Operating System<br/>
+<br/>
+What's the distribution type? What version?<br/>
+cat /etc/issue<br/>
+cat /etc/*-release<br/>
+ cat /etc/lsb-release   # Debian based<br/>
+ cat /etc/redhat-release  # Redhat based<br/>
+<br/>
+What's the kernel version? <i>Is it 64-bit?</i> <br/>
+cat /proc/version<br/>
+uname -a<br/>
+uname -mrs<br/>
+rpm -q kernel<br/>
+dmesg | grep Linux<br/>
+ls /boot | grep vmlinuz-<br/>
+<br/>
+<br/>
+What can be learnt from the environmental variables? <br/>
+cat /etc/profile<br/>
+cat /etc/bashrc<br/>
+cat ~/.bash_profile<br/>
+cat ~/.bashrc<br/>
+cat ~/.bash_logout<br/>
+env<br/>
+set<br/>
+<br/>
+Is there a printer? lpstat -a</body></html>

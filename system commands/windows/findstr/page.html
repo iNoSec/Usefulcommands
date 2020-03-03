@@ -1,0 +1,36 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Findstr</title>
+</head><body>Searches for patterns of text in files.<br/>
+<br/>
+For examples of how to use this command, see Examples.<br/>
+<br/>
+Syntax<br/>
+findstr [/b] [/e] [/l | /r] [/s] [/i] [/x] [/v] [/n] [/m] [/o] [/p] [/f:&lt;File&gt;] [/c:&lt;String&gt;] [/g:&lt;File&gt;] [/d:&lt;DirList&gt;] [/a:&lt;ColorAttribute&gt;] [/off[line]] &lt;Strings&gt; [&lt;Drive&gt;:][&lt;Path&gt;]&lt;FileName&gt;[ ...]<br/>
+<br/>
+Parameters<br/>
+Parameter			Description<br/>
+<br/>
+/b				Matches the text pattern if it is at the beginning of a line.<br/>
+/e				Matches the text pattern if it is at the end of a line.<br/>
+/l				Processes search strings literally.<br/>
+/r				Processes search strings as regular expressions. This is the default setting.<br/>
+/s				Searches the current directory and all subdirectories.<br/>
+/i				Ignores the case of the characters when searching for the string.<br/>
+/x				Prints lines that match exactly.<br/>
+/v				Prints only lines that do not contain a match.<br/>
+/n				Prints the line number of each line that matches.<br/>
+/m				Prints only the file name if a file contains a match.<br/>
+/o				Prints character offset before each matching line.<br/>
+/p				Skips files with non-printable characters.<br/>
+/off[line]			Does not skip files that have the offline attribute set.<br/>
+/f:&lt;File&gt;			Gets a file list from the specified file.<br/>
+/c:&lt;String&gt;		Uses the specified text as a literal search string.<br/>
+/g:&lt;File&gt;			Gets search strings from the specified file.<br/>
+/d:&lt;DirList&gt;		Searches the specified list of directories. Each directory must be separated with a semicolon (;), for example dir1;dir2;dir3.<br/>
+<br/>
+/a:&lt;ColorAttribute&gt;	Specifies color attributes with two hexadecimal digits. Type color /? for additional information.<br/>
+&lt;Strings&gt;			Specifies the text to search for in FileName. Required.<br/>
+[&lt;Drive&gt;:][&lt;Path&gt;]&lt;FileName&gt;[ ...]	Specifies the location and file or files to search. At least one file name is required.<br/>
+/?				Displays Help at the command prompt.</body></html>

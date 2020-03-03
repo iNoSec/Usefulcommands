@@ -1,0 +1,33 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>last</title>
+</head><body>&quot;last&quot; command is used to determine anything other than the users logged in &quot;now&quot; and the &quot;last&quot; time a user logged in.<br/>
+<br/>
+Granted; the last command doesn't offer too much in the extra-functionality department, but it does have one very useful feature. Normally, if you were to run last, you'd see output like the following:<br/>
+<br/>
+<br/>
+reboot  system boot 2.6.5-7.283-smp Thu Jan 25 18:06     (00:21)<br/>
+user1  pts/1    host.xyz.com  Thu Jan 25 08:03 - down  (00:27)<br/>
+reboot  system boot 2.6.5-7.283-smp Thu Jan 25 08:01     (00:29)<br/>
+user1  pts/1    host.xyz.com  Thu Jan 25 07:50 - down  (00:06)<br/>
+<br/>
+<br/>
+But, if you add the &quot;-x&quot; switch to the &quot;last&quot; command, it gives you a lot more detailed information about system run-level changes, which makes it a more accurate way to determine what happened if, and when, your system ever goes down unexpectedly! Here's output from that same swatch of time using &quot;last -x&quot;:<br/>
+<br/>
+runlevel (to lvl 3)  2.6.5-7.283-smp Thu Jan 25 18:06 - 18:28 (00:21)<br/>
+reboot  system boot 2.6.5-7.283-smp Thu Jan 25 18:06     (00:21)<br/>
+shutdown system down 2.6.5-7.283-smp Thu Jan 25 08:31 - 18:28 (09:56)<br/>
+runlevel (to lvl 6)  2.6.5-7.283-smp Thu Jan 25 08:31 - 08:31 (00:00)<br/>
+user1  pts/1    host.xyz.com  Thu Jan 25 08:03 - down  (00:27)<br/>
+runlevel (to lvl 3)  2.6.5-7.283-smp Thu Jan 25 08:01 - 08:31 (00:29)<br/>
+reboot  system boot 2.6.5-7.283-smp Thu Jan 25 08:01     (00:29)<br/>
+shutdown system down 2.6.5-7.283-smp Thu Jan 25 07:57 - 08:31 (00:33)<br/>
+runlevel (to lvl 6)  2.6.5-7.283-smp Thu Jan 25 07:57 - 07:57 (00:00)<br/>
+user1  pts/1    host.xyz.com  Thu Jan 25 07:50 - down  (00:06)<br/>
+<br/>
+Generally, you'll notice that this extra information is assigned to the &quot;user&quot; with the name of your &quot;kernel&quot; revision ( usually the value of &quot;uname -r&quot; or &quot;uname -k.&quot; 2.6.5-7.286-smp, in our case) so you can run:<br/>
+<br/>
+last -x|grep `uname -r`<br/>
+<br/>
+to restrict your output to this system information and ignore all the user logins/logouts :)</body></html>

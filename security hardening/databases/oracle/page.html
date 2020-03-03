@@ -1,0 +1,46 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Oracle</title>
+</head><body>Securing the Listener<br/>
+Configure Listener to accept/refuse requests from specific IPs<br/>
+Create a file called protocol.ora in same directory as listener.ora (typically $ORACLE_HOME/network/admin)<br/>
+Contents of protocol.ora file:<br/>
+ tcp.validnode_checking=yes<br/>
+ tcp.invited_nodes=(address1, address2, …)<br/>
+ tcp.excluded_nodes=(address1, address2, …)<br/>
+Note: can be IPs or hostnames (sorry – ranges not allowed) Don’t forget to restart listener!<br/>
+<br/>
+Securing the Listener by restricting access<br/>
+Set a password for the Listener<br/>
+Login to listener controller<br/>
+– C:\lsnrctl<br/>
+Set the password<br/>
+– LSNRCTL&gt; SET PASSWORD &lt;password&gt;<br/>
+Alternatively setting the Listener password<br/>
+Set the password<br/>
+– LSNRCTL&gt; CHANGE_PASSWORD<br/>
+ Old password: &lt;enter&gt;<br/>
+ New password: &lt;new password&gt;<br/>
+ Reenter new password: &lt;new password&gt;<br/>
+– LSNRCTL&gt; SAVE_CONFIG<br/>
+<br/>
+Disable the ability to change TNS Listener configuration settings<br/>
+Edit “listener.ora” and add or modify:<br/>
+– ADMIN_RESTRICTIONS_&lt;listener_name&gt;=ON<br/>
+<br/>
+Enable Logging<br/>
+By default, logging is disabled, to enable it:<br/>
+ – LSNRCTL&gt; SET LOG_STATUS on Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST= spy)(PORT=1521)))<br/>
+ listener parameter &quot;log_status&quot; set to ON<br/>
+ The command completed successfully<br/>
+View log of listener commands (issued locally andremotely):<br/>
+ – View the file &lt;SID&gt;.log in the $ORACLE_HOME/network/admin<br/>
+ – Will show the timestamp, command issued, and result code<br/>
+<br/>
+Remove unnecessary URLs<br/>
+Remove or disable unnecessary accounts<br/>
+Encrypt your communications through use of SSH<br/>
+Audit your database through operating system and databaselogging<br/>
+Locate your publicly accessible Oracle web server behind a firewall in a DMZ, and separately install the Oracle database server on the internal network<br/>
+No Oracle database should be in a DMZ or unprotected by a firewall!!!</body></html>

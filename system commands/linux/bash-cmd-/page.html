@@ -1,0 +1,25 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>bash/cmd/</title>
+</head><body>resources:<br/>
+tldp.org/LDP/Bash-Beginners-Guide/html<br/>
+<br/>
+somecommand<b>; </b>newevilcommand					use a semicolon to segment new commands, one after the other, regardless if the previous succeeds<br/>
+<br/>
+command <b>&amp;&amp;</b>command							segment commands ONLY IF the previous succeeds<br/>
+<br/>
+!!											runs last command as sudo<br/>
+<br/>
+history | tail -20									see last 20 commands run in history<br/>
+<br/>
+!134											reruns the 134 command in command history<br/>
+<br/>
+$() and ` `										both of these can mean command substitution<br/>
+${}												designates a variable in a bash function<br/>
+${i:1}											in a variable, designates the offse that i will be read at (ie, skipping the first character 0)<br/>
+<br/>
+if [ blah -gt / -eq / -lt / le blah ]; then ; fi;				if statement<br/>
+for i in `cat file`; do . . . ;done;						for loop<br/>
+<br/>
+<span style="font-size: 10pt">-z string<div style="text-align: left"><span style="font-family: Arial"> 			True if the string is null (an empty string)</span></div> </span></body></html>

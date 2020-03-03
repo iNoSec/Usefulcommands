@@ -1,0 +1,27 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>lsof</title>
+</head><body>For lsof, to show opened files for certain path only, put -- in front of each path<br/>
+<br/>
+lsof -- /home4<br/>
+lsof -- /home4 -- /home2<br/>
+<br/>
+lsof will show all opened file containing the path.<br/>
+<br/>
+lsof is useful to <b>find </b>out all <b>file(s) opened by</b>a particular process.<br/>
+<br/>
+-i	Lists IP sockets. i for everything or sort 4 for ipv4, 6 for ipv6, UDP/TCP, or :range-range for specific ports<br/>
+-n	Do not resolve hostnames (no DNS).<br/>
+-u	List files opened by processes belonging to a specific user<br/>
+-p	display opened files based on PID numbers (exclude with ^PID eg ^2052)<br/>
+-P  Do not resolve port names (list port number instead of its name).<br/>
+-t	IDs of processes that have opened a particular file<br/>
++D	lsof search for all open instance of diretory and subs<br/>
+-R	list Parent Process ID <ul><li style="list-style-type: none">-p [PID] -R for parent process id of specific process</li>
+</ul>
+<br/>
+One can also list Unix Sockets by using lsof -U.<br/>
+<br/>
+lsof +L1										find files that are unlinked<br/>
+lsof -i										information about processes with open ports</body></html>

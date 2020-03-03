@@ -1,0 +1,231 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Regex</title>
+</head><body>http://www.rexegg.com/regex-quickstart.html#ref<br/>
+Online tester/help/explain/etc: https://regex101.com<br/>
+<br/>
+Regex Accelerated Course and Cheat Sheet<br/>
+For easy navigation, here are some jumping points to various sections of the page:<br/>
+<br/>
+✽ Characters<br/>
+✽ Quantifiers<br/>
+✽ More Characters<br/>
+✽ Logic<br/>
+✽ More White-Space<br/>
+✽ More Quantifiers<br/>
+✽ Character Classes<br/>
+✽ Anchors and Boundaries<br/>
+✽ POSIX Classes<br/>
+✽ Inline Modifiers<br/>
+✽ Lookarounds<br/>
+✽ Character Class Operations<br/>
+✽ Other Syntax<br/>
+<br/>
+<br/>
+(direct link)<br/>
+Characters	<br/>
+Character	Legend				Example		Sample Match<br/>
+\d		Most engines: one <br/>
+		digit from 0 to 9			file_\d\d		file_25<br/>
+\d		.NET, Python 3: one <br/>
+		Unicode digit in any <br/>
+		script				file_\d\d		file_9੩<br/>
+\w		Most engines: &quot;word <br/>
+		character&quot;: ASCII letter, <br/>
+		digit or underscore		\w-\w\w\w		A-b_1<br/>
+\w		.Python 3: &quot;word <br/>
+		character&quot;: Unicode<ul><li style="list-style-type: none"><ul><li style="list-style-type: none">letter, ideogram, digit, </li>
+<li style="list-style-type: none">or underscore			\w-\w\w\w		字-ま_۳</li>
+</ul>
+</li>
+</ul>
+\w		.NET: &quot;word character&quot;: <br/>
+		Unicode letter, ideogram, <br/>
+		digit, or connector		\w-\w\w\w		字-ま‿۳<br/>
+\s		Most engines: <br/>
+		&quot;whitespace character&quot;: <br/>
+		space, tab, newline, <br/>
+		carriage return, vertical <ul><li style="list-style-type: none">	tab					a\sb\sc		a b</li>
+</ul>
+										c<br/>
+\s		.NET, Python 3, JavaScript: <br/>
+		&quot;whitespace character&quot;: <br/>
+		any Unicode separator	a\sb\sc		a b<br/>
+										c<br/>
+\D		One character that is not <br/>
+		a digit as defined by your <br/>
+		engine's \d			\D\D\D		ABC<br/>
+\W		One character that is not <br/>
+		a word character as defined <br/>
+		by your engine's \w		\W\W\W\W\W	*-+=)<br/>
+\S		One character that is not a <br/>
+		whitespace character as <br/>
+		defined by your engine's \s	\S\S\S\S		Yoyo<br/>
+<br/>
+<br/>
+(direct link)<br/>
+Quantifiers<br/>
+Quantifier		Legend			Example		Sample Match<br/>
++			One or more		Version \w-\w+	Version A-b1_1<br/>
+{3}			Exactly three times	\D{3}			ABC<br/>
+{2,4}			Two to four times	\d{2,4}		156<br/>
+{3,}			Three or more times	\w{3,}		regex_tutorial<br/>
+*			Zero or more times	A*B*C*		AAACC<br/>
+?			Once or none		plurals?		plural<br/>
+<br/>
+<br/>
+(direct link)<br/>
+More Characters<br/>
+Character		Legend			Example		Sample Match<br/>
+.			Any character except <br/>
+			line break			a.c			abc<br/>
+.			Any character except <br/>
+			line break			.*			whatever, man.<br/>
+\.			A period (special <ul><li style="list-style-type: none">		character: needs to be </li>
+<li style="list-style-type: none">		escaped by a \)		a\.c			a.c</li>
+</ul>
+\			Escapes a special <br/>
+			character			\.\*\+\? \$\^\/\\	.*+? $^/\<br/>
+\			Escapes a special <ul><li style="list-style-type: none">		character			\[\{\(\)\}\]		[{()}]</li>
+</ul>
+<br/>
+<br/>
+(direct link)<br/>
+Logic<br/>
+Logic	Legend	Example	Sample Match<br/>
+|	Alternation / OR operand	22|33	33<br/>
+( … )	Capturing group	A(nt|pple)	Apple (captures &quot;pple&quot;)<br/>
+\1	Contents of Group 1	r(\w)g\1x	regex<br/>
+\2	Contents of Group 2	(\d\d)\+(\d\d)=\2\+\1	12+65=65+12<br/>
+(?: … )	Non-capturing group	A(?:nt|pple)	Apple<br/>
+<br/>
+<br/>
+(direct link)<br/>
+More White-Space<br/>
+Character	Legend	Example	Sample Match<br/>
+\t	Tab	T\t\w{2}	T   ab<br/>
+\r	Carriage return character	see below	<br/>
+\n	Line feed character	see below	<br/>
+\r\n	Line separator on Windows	AB\r\nCD	AB<br/>
+CD<br/>
+\N	Perl, PCRE (C, PHP, R…): one character that is not a line break	\N+	ABC<br/>
+\h	Perl, PCRE (C, PHP, R…), Java: one horizontal whitespace character: tab or Unicode space separator		<br/>
+\H	One character that is not a horizontal whitespace		<br/>
+\v	.NET, JavaScript, Python, Ruby: vertical tab		<br/>
+\v	Perl, PCRE (C, PHP, R…), Java: one vertical whitespace character: line feed, carriage return, vertical tab, form feed, paragraph or line separator		<br/>
+\V	Perl, PCRE (C, PHP, R…), Java: any character that is not a vertical whitespace		<br/>
+\R	Perl, PCRE (C, PHP, R…), Java: one line break (carriage return + line feed pair, and all the characters matched by \v)		<br/>
+<br/>
+<br/>
+(direct link)<br/>
+More Quantifiers<br/>
+Quantifier	Legend	Example	Sample Match<br/>
++	The + (one or more) is &quot;greedy&quot;	\d+	12345<br/>
+?	Makes quantifiers &quot;lazy&quot;	\d+?	1 in 12345<br/>
+*	The * (zero or more) is &quot;greedy&quot;	A*	AAA<br/>
+?	Makes quantifiers &quot;lazy&quot;	A*?	empty in AAA<br/>
+{2,4}	Two to four times, &quot;greedy&quot;	\w{2,4}	abcd<br/>
+?	Makes quantifiers &quot;lazy&quot;	\w{2,4}?	ab in abcd<br/>
+<br/>
+<br/>
+(direct link)<br/>
+Character Classes<br/>
+Character	Legend	Example	Sample Match<br/>
+[ … ]	One of the characters in the brackets	[AEIOU]	One uppercase vowel<br/>
+[ … ]	One of the characters in the brackets	T[ao]p	Tap or Top<br/>
+-	Range indicator	[a-z]	One lowercase letter<br/>
+[x-y]	One of the characters in the range from x to y	[A-Z]+	GREAT<br/>
+[ … ]	One of the characters in the brackets	[AB1-5w-z]	One of either: A,B,1,2,3,4,5,w,x,y,z<br/>
+[x-y]	One of the characters in the range from x to y	[ -~]+	Characters in the printable section of the ASCII table.<br/>
+[^x]	One character that is not x	[^a-z]{3}	A1!<br/>
+[^x-y]	One of the characters not in the range from x to y	[^ -~]+	Characters that are not in the printable section of the ASCII table.<br/>
+[\d\D]	One character that is a digit or a non-digit	[\d\D]+	Any characters, inc-<br/>
+luding new lines, which the regular dot doesn't match<br/>
+[\x41]	Matches the character at hexadecimal position 41 in the ASCII table, i.e. A	[\x41-\x45]{3}	ABE<br/>
+<br/>
+<br/>
+(direct link)<br/>
+Anchors and Boundaries<br/>
+Anchor	Legend	Example	Sample Match<br/>
+^	Start of string or start of line depending on multiline mode. (But when [^inside brackets], it means &quot;not&quot;)	^abc .*	abc (line start)<br/>
+$	End of string or end of line depending on multiline mode. Many engine-dependent subtleties.	.*? the end$	this is the end<br/>
+\A	Beginning of string<br/>
+(all major engines except JS)	\Aabc[\d\D]*	abc (string...<br/>
+...start)<br/>
+\z	Very end of the string<br/>
+Not available in Python and JS	the end\z	this is...\n...the end<br/>
+\Z	End of string or (except Python) before final line break<br/>
+Not available in JS	the end\Z	this is...\n...the end\n<br/>
+\G	Beginning of String or End of Previous Match<br/>
+.NET, Java, PCRE (C, PHP, R…), Perl, Ruby		<br/>
+\b	Word boundary<br/>
+Most engines: position where one side only is an ASCII letter, digit or underscore	Bob.*\bcat\b	Bob ate the cat<br/>
+\b	Word boundary<br/>
+.NET, Java, Python 3, Ruby: position where one side only is a Unicode letter, digit or underscore	Bob.*\b\кошка\b	Bob ate the кошка<br/>
+\B	Not a word boundary	c.*\Bcat\B.*	copycats<br/>
+<br/>
+<br/>
+(direct link)<br/>
+POSIX Classes<br/>
+Character	Legend	Example	Sample Match<br/>
+[:alpha:]	PCRE (C, PHP, R…): ASCII letters A-Z and a-z	[8[:alpha:]]+	WellDone88<br/>
+[:alpha:]	Ruby 2: Unicode letter or ideogram	[[:alpha:]\d]+	кошка99<br/>
+[:alnum:]	PCRE (C, PHP, R…): ASCII digits and letters A-Z and a-z	[[:alnum:]]{10}	ABCDE12345<br/>
+[:alnum:]	Ruby 2: Unicode digit, letter or ideogram	[[:alnum:]]{10}	кошка90210<br/>
+[:punct:]	PCRE (C, PHP, R…): ASCII punctuation mark	[[:punct:]]+	?!.,:;<br/>
+[:punct:]	Ruby: Unicode punctuation mark	[[:punct:]]+	‽,:〽⁆<br/>
+<br/>
+<br/>
+(direct link)<br/>
+Inline Modifiers<br/>
+None of these are supported in JavaScript. In Ruby, beware of (?s) and (?m). <br/>
+Modifier	Legend	Example	Sample Match<br/>
+(?i)	Case-insensitive mode<br/>
+(except JavaScript)	(?i)Monday	monDAY<br/>
+(?s)	DOTALL mode (except JS and Ruby). The dot (.) matches new line characters (\r\n). Also known as &quot;single-line mode&quot; because the dot treats the entire input as a single line	(?s)From A.*to Z	From A<br/>
+to Z<br/>
+(?m)	Multiline mode<br/>
+(except Ruby and JS) ^ and $ match at the beginning and end of every line	(?m)1\r\n^2$\r\n^3$	1<br/>
+2<br/>
+3<br/>
+(?m)	In Ruby: the same as (?s) in other engines, i.e. DOTALL mode, i.e. dot matches line breaks	(?m)From A.*to Z	From A<br/>
+to Z<br/>
+(?x)	Free-Spacing Mode mode<br/>
+(except JavaScript). Also known as comment mode or whitespace mode	(?x) # this is a<br/>
+# comment<br/>
+abc # write on multiple<br/>
+# lines<br/>
+[ ]d # spaces must be<br/>
+# in brackets	abc d<br/>
+(?n)	.NET: named capture only	Turns all (parentheses) into non-capture groups. To capture, use named groups.	<br/>
+(?d)	Java: Unix linebreaks only	The dot and the ^ and $ anchors are only affected by \n	<br/>
+<br/>
+<br/>
+(direct link)<br/>
+Lookarounds<br/>
+Lookaround	Legend	Example	Sample Match<br/>
+(?=…)	Positive lookahead	(?=\d{10})\d{5}	01234 in 0123456789<br/>
+(?&lt;=…)	Positive lookbehind	(?&lt;=\d)cat	cat in 1cat<br/>
+(?!…)	Negative lookahead	(?!theatre)the\w+	theme<br/>
+(?&lt;!…)	Negative lookbehind	\w{3}(?&lt;!mon)ster	Munster<br/>
+<br/>
+<br/>
+(direct link)<br/>
+Character Class Operations<br/>
+Class Operation	Legend	Example	Sample Match<br/>
+[…-[…]]	.NET: character class subtraction. One character that is in those on the left, but not in the subtracted class.	[a-z-[aeiou]]	Any lowercase consonant<br/>
+[…-[…]]	.NET: character class subtraction.	[\p{IsArabic}-[\D]]	An Arabic character that is not a non-digit, i.e., an Arabic digit<br/>
+[…&amp;&amp;[…]]	Java, Ruby 2+: character class intersection. One character that is both in those on the left and in the &amp;&amp; class.	[\S&amp;&amp;[\D]]	An non-whitespace character that is a non-digit.<br/>
+[…&amp;&amp;[…]]	Java, Ruby 2+: character class intersection.	[\S&amp;&amp;[\D]&amp;&amp;[^a-zA-Z]]	An non-whitespace character that a non-digit and not a letter.<br/>
+[…&amp;&amp;[^…]]	Java, Ruby 2+: character class subtraction is obtained by intersecting a class with a negated class	[a-z&amp;&amp;[^aeiou]]	An English lowercase letter that is not a vowel.<br/>
+[…&amp;&amp;[^…]]	Java, Ruby 2+: character class subtraction	[\p{InArabic}&amp;&amp;[^\p{L}\p{N}]]	An Arabic character that is not a letter or a number<br/>
+<br/>
+<br/>
+(direct link)<br/>
+Other Syntax<br/>
+Syntax	Legend	Example	Sample Match<br/>
+\K	Keep Out<br/>
+Perl, PCRE (C, PHP, R…), Python's alternate regex engine, Ruby 2+: drop everything that was matched so far from the overall match to be returned	prefix\K\d+	12<br/>
+\Q…\E	Perl, PCRE (C, PHP, R…), Java: treat anything between the delimiters as a literal string. Useful to escape metacharacters.	\Q(C++ ?)\E	(C++ ?)<br/>
+</body></html>

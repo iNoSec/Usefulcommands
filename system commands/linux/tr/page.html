@@ -1,0 +1,14 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>tr</title>
+</head><body>tr is translate, you can easily transform things <br/>
+<br/>
+All letters to uppercase<br/>
+tr &quot;[:lower:]&quot; &quot;[:upper:]&quot; &lt; file1 &gt; file2<br/>
+cat file.txt | tr -d &quot;.&quot;			remove caracters<br/>
+cat file.txt | tr &quot;.&quot; &quot;_&quot;			remove and replace with underscore<br/>
+tr '\n' ' ' &lt; input_filename		replace \n with space<br/>
+tr -d '\n' &lt; input.txt &gt; output.txt	delete all \n<br/>
+tr --delete '\n' &lt; input.txt &gt; output.txt	delete all (gnu version of tr)<br/>
+</body></html>

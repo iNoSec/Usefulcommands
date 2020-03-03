@@ -1,0 +1,20 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Reg Copy</title>
+</head><body>Copies a registry entry to a specified location on the local or remote computer.<br/>
+<br/>
+For examples of how to use this command, see Examples.<br/>
+<br/>
+Syntax<br/>
+reg copy &lt;KeyName1&gt; &lt;KeyName2&gt; [/s] [/f]<br/>
+<br/>
+Parameters<br/>
+Parameter			Description<br/>
+&lt;KeyName1&gt;		Specifies the full path of the subkey to copy. To specify a remote computer, include the computer name (in the format \\ComputerName\) as part of the KeyName. Omitting \\ComputerName\ causes the operation to default to the local computer. The KeyName must include a valid root key. Valid root keys for the local computer are: HKLM, HKCU, HKCR, HKU, and HKCC. If a remote computer is specified, valid root keys are: HKLM and HKU.<br/>
+<br/>
+&lt;KeyName2&gt;		Specifies the full path of the subkey destination. To specify a remote computer, include the computer name (in the format \\ComputerName\) as part of the KeyName. Omitting \\ComputerName\ causes the operation to default to the local computer. The KeyName must include a valid root key. Valid root keys for the local computer are: HKLM, HKCU, HKCR, HKU, and HKCC. If a remote computer is specified, valid root keys are: HKLM and HKU.<br/>
+<br/>
+/s				Copies all subkeys and entries under the specified subkey.<br/>
+/f				Copies the subkey without prompting for confirmation.<br/>
+/?				Displays help for reg copy at the command prompt.</body></html>

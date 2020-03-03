@@ -1,0 +1,21 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Group</title>
+</head><body>net group<br/>
+Adds/modifies global groups on servers. Without parameters will list global groups.<br/>
+<br/>
+Syntax:<br/>
+<br/>
+net group &lt;group name&gt; \[/command:&quot;&lt;text&gt;&quot;\] \[/domain\]<br/>
+net group &lt;group name&gt; \[/add \[/comment:&quot;&lt;text&gt;&quot;\] or /delete\] \[/domain\]<br/>
+net group &lt;group name&gt; &lt;user name&gt; /add or /delete \[/domain\]<br/>
+<br/>
+Options:<br/>
+<br/>
+groupname		Name of the global group<br/>
+/comment:&quot;&lt;text&gt;&quot;	Comment if a new global group is created. Up to 48 characters<br/>
+/domain			Performs the function on the primary domain controller<br/>
+username			Username to which apply the operation<br/>
+/add				Adds the specified user to the group or the group to the domain<br/>
+/delete			Removes a group from a domain or a user from a group</body></html>

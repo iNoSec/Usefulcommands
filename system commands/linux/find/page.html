@@ -1,0 +1,52 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>find</title>
+</head><body>find /path/dir -type f -executable							find all directories user has execute permissions<br/>
+find /path/dir -perm u+x									using the perm option (should work with +s)<br/>
+find / -user root -perm -4000 -print						Find all SUID root files:<br/>
+find / -group root -perm -2000 -print						Find all SGID root files:<br/>
+find / -perm -4000 -o -perm -2000 -print					Find all SUID and SGID files owned by anyone:<br/>
+find / -nouser -print										Find all files that are not owned by any user:<br/>
+find / -nogroup -print									Find all files that are not owned by any group:<br/>
+find / -type l -ls										Find all symlinks and what they point to:<br/>
+find / -perm -o=w										Find things that are world writable<br/>
+find / -nouser											Find files that are not owned by anyone<br/>
+find . | xargs -I file lsattr -a file 2&gt;/dev/null | grep ‘^….i’		Find immutable files...shouldn't be any...suspicious<br/>
+<br/>
+Inventory all different fily types that exist in a given directory tree and tally each type<br/>
+find . -print|xargs file|awk '{$1=&quot;&quot;;x[$0]++;}END{for(y in x)printf(&quot;%d\t%s\n&quot;,x[y],y);}'|sort -nr<br/>
+<br/>
+for grouping order of operations, a space is required before and after parens<br/>
+\( \)<br/>
+<br/>
+<br/>
+<br/>
+More Examples<br/>
+find												List all files in current and sub dirs (same as find . and find . -print)<br/>
+find /path											Look for files in /path dir. Lists all files by default<br/>
+find /path -name &quot;abc.txt&quot;								Find files with name &quot;abc.txt&quot; in /path (also works with wildcards)<br/>
+find /path -maxdepth 2 								Find files in /path but only go 2 dirs deep<br/>
+find /path -not -name &quot;*.php&quot; 							Invert match, find files that are NOT *.php<br/>
+find /path -name 'abc*' ! -name '*.php'						Combine name 'abc' and NOT '*.php'<br/>
+find /path -name '*.php' -o -name '*.txt'						Use -o for OR operator. Find *.php OR *.txt<br/>
+find /path -type f -name 'abc*'							Find only files with name abc<br/>
+find /path -type d -name 'abc*' 							Find only dirs with name abc<br/>
+find /path -type f -name &quot;.*&quot;								Find hidden files (start with .)<br/>
+find /path -type f ! -perm 0777							Find files with NOT perm 0777<br/>
+find /path -perm /u=r									Find readonly files<br/>
+find /path -perm /a=x									Find executable files<br/>
+find /path -user bob									Find files owned by a user<br/>
+find /path -group developer								Find files owned by a group<br/>
+find /path -mtime 50									Find files modified within the last 50 days<br/>
+find /path -atime 50									Find files that were accessed within the last 50 days<br/>
+find /path -mtime +50 -mtime -100						Find files that were modified between 50 and 100 days ago<br/>
+find /path -cmin -60									Find files that were changed within the last hour<br/>
+find /path -mmin -60									Find files that were modified within the last hour<br/>
+find /path -amin -60									Find files that were access within the last hour<br/>
+find /path -size 50M									Find files based on size<br/>
+find /path -size +50M -size -100M						Find files greater than 50mb and less than 100mb<br/>
+find /path -type f -exec ls -s {} \; | sort -n -r head -5			Find 5 largest files<br/>
+find /path -type f -empty 								Find empty files<br/>
+find /path -type d -empty								Find empty directories<br/>
+</body></html>

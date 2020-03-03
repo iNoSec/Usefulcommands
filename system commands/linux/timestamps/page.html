@@ -1,0 +1,40 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Timestamps</title>
+</head><body>ZSH<br/>
+I believe the HISTTIMEFORMAT is for Bash shells. If you're using zsh then you could use these switches to the history command:<br/>
+Examples<br/>
+<br/>
+$ history -E<br/>
+  1  2.12.2013 14:19 history -E<br/>
+<br/>
+$ history -i<br/>
+  1 2013-12-02 14:19 history -E<br/>
+<br/>
+$ history -D<br/>
+  1 0:00 history -E<br/>
+  2 0:00 history -i<br/>
+<br/>
+If you do a man zshoptions or man zshbuiltins you can find out more information about these switches as well as other info related to history.<br/>
+<br/>
+excerpt from zshbuiltins man page<br/>
+<br/>
+Also when listing,<br/>
+ -d   prints timestamps for each command<br/>
+ -f   prints full time-date stamps in the US `MM/DD/YY hh:mm' format<br/>
+ -E   prints full time-date stamps in the European `dd.mm.yyyy hh:mm' format<br/>
+ -i   prints full time-date stamps in ISO8601 `yyyy-mm-dd hh:mm' format<br/>
+ -t fmt prints time and date stamps in the given format; fmt is formatted <br/>
+    with the strftime function with the zsh extensions described for <br/>
+    the %D{string} prompt format in the section EXPANSION OF PROMPT <br/>
+    SEQUENCES in zshmisc(1). The resulting formatted string must be no <br/>
+    more than 256 characters or will not be printed.<br/>
+ -D   prints elapsed times; may be combined with one of the options above.<br/>
+<br/>
+<br/>
+BASH<br/>
+echo 'export HISTTIMEFORMAT=&quot;%d/%m/%y %T &quot;' &gt;&gt; ~/.bash_profile<br/>
+source ~/.bash_profile<br/>
+<br/>
+and this is permanent way.</body></html>

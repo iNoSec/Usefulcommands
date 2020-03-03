@@ -1,0 +1,13 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>gcc / wine</title>
+</head><body>Compiling Exploit in Kali:<br/>
+gcc -m32 -o output32 hello.c 	(32 bit)<br/>
+gcc -o output hello.c 			(64 bit)<br/>
+<br/>
+<br/>
+Compiling Windows Exploits on Kali:<br/>
+cd /root/.wine/drive_c/MinGW/bin<br/>
+wine gcc -o ability.exe /tmp/exploit.c -lwsock32<br/>
+wine ability.exe</body></html>

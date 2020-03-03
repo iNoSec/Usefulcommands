@@ -1,0 +1,42 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Get-ActiveWindow.ps1</title>
+</head><body>#https://gallery.technet.microsoft.com/scriptcenter/Get-Active-Window-on-User-352fa957/file/110778/1/Get-ActiveWindow.ps1<br/>
+<br/>
+&lt;# <br/>
+  .Synopsis <br/>
+    Gets active window in a user session <br/>
+    <br/>
+  .Description <br/>
+    Gets active window in a user session. It displays the process name and window title of the process <br/>
+<br/>
+  .Example <br/>
+    .\Get-ActiveWindow.ps1 <br/>
+    <br/>
+    Description <br/>
+    ----------- <br/>
+    Gets the active window that is currently highlighted. <br/>
+<br/>
+  .Notes <br/>
+    AUTHOR:  Sitaram Pamarthi <br/>
+    Website:  http://techibee.com <br/>
+#&gt; <br/>
+[CmdletBinding()] <br/>
+Param( <br/>
+) <br/>
+Add-Type @&quot; <br/>
+ using System; <br/>
+ using System.Runtime.InteropServices; <br/>
+ public class UserWindows { <br/>
+  [DllImport(&quot;user32.dll&quot;)] <br/>
+  public static extern IntPtr GetForegroundWindow(); <br/>
+} <br/>
+&quot;@ <br/>
+try { <br/>
+$ActiveHandle = [Windows]::GetForegroundWindow() <br/>
+$Process = Get-Process | ? {$_.MainWindowHandle -eq $activeHandle} <br/>
+$Process | Select ProcessName, @{Name=&quot;AppTitle&quot;;Expression= {($_.MainWindowTitle)}} <br/>
+} catch { <br/>
+  Write-Error &quot;Failed to get active Window details. More Info: $_&quot; <br/>
+} </body></html>

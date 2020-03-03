@@ -1,0 +1,7 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Uninstall Products</title>
+</head><body>Uninstall something...like antivirus...<br/>
+wmic product get name /value (this gets software names)<br/>
+wmic product where name=&quot;XXX&quot; call uninstall /Interactive:Off (this uninstalls software)</body></html>

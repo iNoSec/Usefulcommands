@@ -1,0 +1,20 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Makecab</title>
+</head><body>ackage existing files into a cabinet (.cab) file.<br/>
+<br/>
+Syntax<br/>
+makecab [/v[n]] [/d var=&lt;value&gt; ...] [/l &lt;dir&gt;] &lt;source&gt; [&lt;destination&gt;]<br/>
+makecab [/v[&lt;n&gt;]] [/d var=&lt;value&gt; ...] /f &lt;directives_file&gt; [...]<br/>
+<br/>
+Parameters<br/>
+Parameter				Description<br/>
+&lt;source&gt;				File to compress.<br/>
+&lt;destination&gt;			File name to give compressed file. If omitted, the last character of the source file name is replaced with an underscore (_) and used as the destination.<br/>
+<br/>
+/f &lt;directives_file&gt;		A file with makecab directives (may be repeated).<br/>
+d var=&lt;value&gt;			Defines variable with specified value.<br/>
+/l &lt;dir&gt;				Location to place destination (default is current directory).<br/>
+/v[&lt;n&gt;]				Set debugging verbosity level (0=none,...,3=full).<br/>
+/?					Displays Help at the command prompt.</body></html>

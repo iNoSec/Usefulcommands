@@ -1,0 +1,56 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Dir</title>
+</head><body>Syntax<br/>
+<br/>
+Copy<br/>
+dir [&lt;Drive&gt;:][&lt;Path&gt;][&lt;FileName&gt;] [...] [/p] [/q] [/w] [/d] [/a[[:]&lt;Attributes&gt;]][/o[[:]&lt;SortOrder&gt;]] [/t[[:]&lt;TimeField&gt;]] [/s] [/b] [/l] [/n] [/x] [/c] [/4]<br/>
+<br/>
+Parameters<br/>
+Parameter 			Description<br/>
+<br/>
+[&lt;Drive&gt;:][&lt;Path&gt;]		Specifies the drive and directory for which you want to see a listing.<br/>
+[&lt;FileName&gt;]			Specifies a particular file or group of files for which you want to see a listing.<br/>
+/p					Displays one screen of the listing at a time. To see the next screen, press any key on the keyboard.<br/>
+/q					Displays file ownership information.<br/>
+/w					Displays the listing in wide format, with as many as five file names or directory names on each line.<br/>
+/d					Displays the listing in the same format as /w, but the files are sorted by column.<br/>
+/a[[:]&lt;Attributes&gt;]		Displays only the names of those directories and files with the attributes that you specify. If you omit /a, dir displays the names of all files except hidden and system files. If you use /a without specifying Attributes, dir displays the names of all files, including hidden and system files.<br/>
+<br/>
+The following list describes each of the values that you can use for Attributes. Using a colon (:) is optional. Use any combination of these values, and do not separate the values with spaces.<br/>
+ d Directories<br/>
+ h Hidden files<br/>
+ s System files<br/>
+ l Reparse points<br/>
+ r Read-only files<br/>
+ a Files ready for archiving<br/>
+ i Not content indexed files<br/>
+ - Prefix meaning &quot;not&quot;<br/>
+<br/>
+/o[[:]&lt;SortOrder&gt;]		Sorts the output according to SortOrder, which can be any combination of the following values:<br/>
+ n By name (alphabetical)<br/>
+ e By extension (alphabetical)<br/>
+ g Group directories first<br/>
+ s By size (smallest first)<br/>
+ d By date/time (oldest first)<br/>
+ - Prefix to reverse order<br/>
+<br/>
+Note<br/>
+Using a colon is optional. Multiple values are processed in the order in which you list them. Do not separate multiple values with spaces.<br/>
+<br/>
+If SortOrder is not specified, dir /o lists the directories in alphabetic order, followed by the files, which are also sorted in alphabetic order.<br/>
+<br/>
+/t[[:]&lt;TimeField&gt;]		Specifies which time field to display or use for sorting. The following list describes each of the values you can use for TimeField:<br/>
+c Creation<br/>
+a Last access<br/>
+w Last written<br/>
+<br/>
+/s					Lists every occurrence of the specified file name within the specified directory and all subdirectories.<br/>
+/b					Displays a bare list of directories and files, with no additional information. /b overrides /w.<br/>
+/l					Displays unsorted directory names and file names in lowercase.<br/>
+/n					Displays a long list format with file names on the far right of the screen.<br/>
+/x					Displays the short names generated for non-8dot3 file names. The display is the same as the display for /n, but the short name is inserted before the long name.<br/>
+/c					Displays the thousand separator in file sizes. This is the default behavior. Use /-c to hide separators.<br/>
+/4					Displays years in four-digit format.<br/>
+/?					Displays help at the command prompt.</body></html>

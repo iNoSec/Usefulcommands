@@ -1,0 +1,18 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>openssl</title>
+</head><body>Openssl can encrypt and decrypt files. Sometimes these have the .enc extension<br/>
+<br/>
+openssl enc -ciphers										list all ciphers available to openssl<br/>
+openssl &lt;file&gt; -d -salt -md md5 -in &lt;.enc&gt; -out &lt;file&gt; -k &lt;pass&gt;	use openssl to decrypt a file<br/>
+	&lt;file&gt; to decrypt<br/>
+	-d: decrypt<br/>
+	-salt: salted<br/>
+	-md: hash<br/>
+	-in: encrypted file<br/>
+	-out: decrypted file output<br/>
+	-k: password to decrypt file with<br/>
+<br/>
+potentially useful script https://github.com/glv2/bruteforce-salted-openssl<br/>
+Can provide candidates for passwords from a file. Downside is you still have to loop through algos to try and actually decrypt</body></html>

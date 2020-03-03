@@ -1,0 +1,69 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>fixelf.c</title>
+</head><body>/* fixelf.c - defeat noexec mount option */<br/>
+#include &lt;elf.h&gt;<br/>
+#include &lt;fcntl.h&gt;<br/>
+#include &lt;stdio.h&gt;<br/>
+#include &lt;unistd.h&gt;<br/>
+#include &lt;stdlib.h&gt;<br/>
+#include &lt;sys/stat.h&gt;<br/>
+<br/>
+char *program;<br/>
+<br/>
+void err(char *s) {<br/>
+	perror(s);<br/>
+	exit(1);<br/>
+}<br/>
+<br/>
+void err1(char *s) {<br/>
+	fprintf(stderr, &quot;%s\n&quot;, s);<br/>
+	exit(1);<br/>
+}<br/>
+<br/>
+int main(int argc, char **argv) {<br/>
+	int fd, n, i;<br/>
+	Elf32_Ehdr *eh;<br/>
+	Elf32_Phdr *ph;<br/>
+	struct stat s;<br/>
+<br/>
+	if (argc != 2)<br/>
+		err1(&quot;call: fixelf prog\n&quot;);<br/>
+<br/>
+	fd = open(argv[1], O_RDONLY);<br/>
+	if (fd &lt; 0)<br/>
+		err(argv[1]);<br/>
+<br/>
+	if (fstat(fd, &amp;s) &lt; 0)<br/>
+		err(&quot;stat&quot;);<br/>
+<br/>
+	if ((program = malloc(s.st_size)) == NULL)<br/>
+		err1(&quot;Out of memory&quot;);<br/>
+<br/>
+	n = read(fd, program, s.st_size);<br/>
+	if (n != s.st_size)<br/>
+		err(&quot;read&quot;);<br/>
+<br/>
+	eh = (Elf32_Ehdr *) program;<br/>
+<br/>
+	if (eh-&gt;e_ident[EI_MAG0] != ELFMAG0 ||<br/>
+	  eh-&gt;e_ident[EI_MAG1] != ELFMAG1 ||<br/>
+	  eh-&gt;e_ident[EI_MAG2] != ELFMAG2 ||<br/>
+	  eh-&gt;e_ident[EI_MAG3] != ELFMAG3)<br/>
+		err1(&quot;bad ELF magic\n&quot;);<br/>
+<br/>
+	for (i=0; i&lt;eh-&gt;e_phnum; i++) {<br/>
+		ph = (Elf32_Phdr *)(program + eh-&gt;e_phoff + i*eh-&gt;e_phentsize);<br/>
+		ph-&gt;p_flags &amp;= ~PF_X;<br/>
+	}<br/>
+<br/>
+	fd = open(&quot;fixelf.out&quot;, O_WRONLY | O_CREAT, 0777);<br/>
+	if (fd &lt; 0)<br/>
+		err(&quot;fixelf.out&quot;);<br/>
+<br/>
+	if (write(fd, program, n) != n)<br/>
+		err(&quot;write&quot;);<br/>
+<br/>
+	return 0;<br/>
+}</body></html>

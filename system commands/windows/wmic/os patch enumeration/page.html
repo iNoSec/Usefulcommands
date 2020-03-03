@@ -1,0 +1,24 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>OS Patch enumeration</title>
+</head><body><span style="font-family: inherit"><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</span>List all patches<br/>
+<span style="font-family: inherit"><br/>
+</span><span style="font-family: inherit">wmic qfe get Caption,Description,HotFixID,InstalledOn</span><br/>
+<br/>
+Find if a specific patch is installed<br/>
+<span style="font-family: inherit">wmic qfe get Caption,Description,HotFixID,InstalledOn | findstr /C:&quot;KB..&quot; /C:&quot;KB..&quot;</span> </body></html>

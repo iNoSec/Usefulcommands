@@ -1,0 +1,13 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Prevent access to multiple file types
+</title>
+</head><body>To restrict access to a variety of file types, add the following code block and edit the file types within parentheses to match the extensions of any files that you wish to protect:<br/>
+<br/>
+&lt;FilesMatch &quot;\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$&quot;&gt;<br/>
+	Order Allow,Deny<br/>
+	Deny from all<br/>
+&lt;/FilesMatch&gt;<br/>
+<br/>
+For further infos, check out Protect files with .htaccess.</body></html>

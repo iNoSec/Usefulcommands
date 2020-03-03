@@ -1,0 +1,28 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Authentication</title>
+</head><body>SQL Server Authentication<br/>
+Windows Only (aka Windows Mode Only)<br/>
+Clients present their credentials to the operating system and are identified and authenticated via their SID (Security Identifier)<br/>
+Advantages<br/>
+ Connection string contains no password<br/>
+ Ease of administration (leveraging your existing Windows infrastructure)<br/>
+ Can grant by Window groups and per user<br/>
+ Windows security model supports security options that SQL authentication does not<br/>
+ Account lockout<br/>
+ Password Lifetimes<br/>
+ Complexity Rules<br/>
+Disadvantages<br/>
+ Problematic when clients are not Windows-based<br/>
+<br/>
+SQL Server and Windows mode (aka Mixed Mode)<br/>
+Clients present their credentials to the operating system and are identified and authenticated via their SID (Security Identifier)<br/>
+OR<br/>
+Clients are authenticated through the native SQL Server authentication<br/>
+Advantages<br/>
+ Ease of administration in that no NT users need to be created<br/>
+ Client platform independent<br/>
+Disadvantages<br/>
+ Lack advanced security features<br/>
+ Doesn’t stand up to Brute Force attacks</body></html>

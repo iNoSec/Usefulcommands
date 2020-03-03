@@ -1,0 +1,272 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>man page</title>
+</head><body>FETCH(1)		FreeBSD	General	Commands Manual		   FETCH(1)<br/>
+<br/>
+NAME<br/>
+  fetch -- retrieve a file by Uniform Resource Locator<br/>
+<br/>
+SYNOPSIS<br/>
+  fetch [-146AadFlMmnPpqRrsUv] [-B bytes] [--bind-address=host]<br/>
+	  [--ca-cert=file] [--ca-path=dir] [--cert=file] [--crl=file]<br/>
+	  [-i file] [--key=file] [-N file] [--no-passive] [--no-proxy=list]<br/>
+	  [--no-sslv3]	[--no-tlsv1] [--no-verify-hostname] [--no-verify-peer]<br/>
+	  [-o file] [--referer=URL] [-S bytes]	[-T seconds]<br/>
+	  [--user-agent=agent-string] [-w seconds] URL	...<br/>
+  fetch [-146AadFlMmnPpqRrsUv] [-B bytes] [--bind-address=host]<br/>
+	  [--ca-cert=file] [--ca-path=dir] [--cert=file] [--crl=file]<br/>
+	  [-i file] [--key=file] [-N file] [--no-passive] [--no-proxy=list]<br/>
+	  [--no-sslv3]	[--no-tlsv1] [--no-verify-hostname] [--no-verify-peer]<br/>
+	  [-o file] [--referer=URL] [-S bytes]	[-T seconds]<br/>
+	  [--user-agent=agent-string] [-w seconds] -h host -f file [-c	dir]<br/>
+<br/>
+DESCRIPTION<br/>
+  The fetch utility provides	a command-line interface to the	fetch(3)<br/>
+  library. Its purpose is to retrieve the file(s) pointed to by the	URL(s)<br/>
+  on	the command line.<br/>
+<br/>
+  The following options are available:<br/>
+<br/>
+  -1, --one-file<br/>
+		 Stop and return exit code 0 at	the first successfully<br/>
+		 retrieved file.<br/>
+<br/>
+  -4, --ipv4-only<br/>
+		 Forces	fetch to use IPv4 addresses only.<br/>
+<br/>
+  -6, --ipv6-only<br/>
+		 Forces	fetch to use IPv6 addresses only.<br/>
+<br/>
+  -A, --no-redirect<br/>
+		 Do not	automatically follow ``temporary'' (302) redirects.<br/>
+		 Some broken Web sites will return a redirect instead of a<br/>
+		 not-found error when the requested object does	not exist.<br/>
+<br/>
+  -a, --retry<br/>
+		 Automatically retry the transfer upon soft failures.<br/>
+<br/>
+  -B	bytes, --buffer-size=bytes<br/>
+		 Specify the read buffer size in bytes.	 The default is	16,384<br/>
+		 bytes.	 Attempts to set a buffer size lower than this will be<br/>
+		 silently ignored. The	number of reads	actually performed is<br/>
+		 reported at verbosity level two or higher (see	the -v flag).<br/>
+<br/>
+  --bind-address=host<br/>
+		 Specifies a hostname or IP address to which sockets used for<br/>
+		 outgoing connections will be bound.<br/>
+<br/>
+  -c	dir	 The file to retrieve is in directory dir on the remote	host.<br/>
+		 This option is	deprecated and is provided for backward	com-<br/>
+		 patibility only.<br/>
+<br/>
+  --ca-cert=file<br/>
+		 [SSL] Path to certificate bundle containing trusted CA	cer-<br/>
+		 tificates. If	not specified, /usr/local/etc/ssl/cert.pem is<br/>
+		 used.	If this	file does not exist, /etc/ssl/cert.pem is used<br/>
+		 instead. If neither file exists and no CA path has been con-<br/>
+		 figured, OpenSSL's default CA cert and	path settings apply.<br/>
+		 The certificate bundle	can contain multiple CA	certificates.<br/>
+		 The security/ca_root_nss port is a common source of a current<br/>
+		 CA bundle.<br/>
+<br/>
+  --ca-path=dir<br/>
+		 [SSL] The directory dir contains trusted CA hashes.<br/>
+<br/>
+  --cert=file<br/>
+		 [SSL] file is a PEM encoded client certificate/key which will<br/>
+		 be used in client certificate authentication.<br/>
+<br/>
+  --crl=file	 [SSL] Points to certificate revocation	list file, which has<br/>
+		 to be in PEM format and may contain peer certificates that<br/>
+		 have been revoked.<br/>
+<br/>
+  -d, --direct<br/>
+		 Use a direct connection even if a proxy is configured.<br/>
+<br/>
+  -F, --force-restart<br/>
+		 In combination	with the -r flag, forces a restart even	if the<br/>
+		 local and remote files	have different modification times.<br/>
+		 Implies -R.<br/>
+<br/>
+  -f	file	 The file to retrieve is named file on the remote host.	 This<br/>
+		 option	is deprecated and is provided for backward compatibil-<br/>
+		 ity only.<br/>
+<br/>
+  -h	host	 The file to retrieve is located on the	host host. This<br/>
+		 option	is deprecated and is provided for backward compatibil-<br/>
+		 ity only.<br/>
+<br/>
+  -i	file, --if-modified-since=file<br/>
+		 If-Modified-Since mode: the remote file will only be<br/>
+		 retrieved if it is newer than file on the local host.	(HTTP<br/>
+		 only)<br/>
+<br/>
+  --key=file	 [SSL] file is a PEM encoded client key	that will be used in<br/>
+		 client	certificate authentication in case key and client cer-<br/>
+		 tificate are stored separately.<br/>
+<br/>
+  -l, --symlink<br/>
+		 If the	target is a file-scheme	URL, make a symbolic link to<br/>
+		 the target rather than	trying to copy it.<br/>
+<br/>
+  -M<br/>
+<br/>
+  -m, --mirror<br/>
+		 Mirror	mode: if the file already exists locally and has the<br/>
+		 same size and modification time as the	remote file, it	will<br/>
+		 not be	fetched. Note that the	-m and -r flags	are mutually<br/>
+		 exclusive.<br/>
+<br/>
+  -N	file, --netrc=file<br/>
+		 Use file instead of ~/.netrc to look up login names and pass-<br/>
+		 words for FTP sites. See ftp(1) for a	description of the<br/>
+		 file format. This feature is experimental.<br/>
+<br/>
+  -n, --no-mtime<br/>
+		 Do not	preserve the modification time of the transferred<br/>
+		 file.<br/>
+<br/>
+  --no-passive<br/>
+		 Forces	the FTP	code to	use active mode.<br/>
+<br/>
+  --no-proxy=list<br/>
+		 Either	a single asterisk, which disables the use of proxies<br/>
+		 altogether, or	a comma- or whitespace-separated list of hosts<br/>
+		 for which proxies should not be used.<br/>
+<br/>
+  --no-sslv3	 [SSL] Do not allow SSL	version	3 when negotiating the connec-<br/>
+		 tion.	This option is deprecated and is provided for backward<br/>
+		 compatibility only. SSLv3 is disabled	by default. Set<br/>
+		 SSL_ALLOW_SSL3	to change this behavior.<br/>
+<br/>
+  --no-tlsv1	 [SSL] Do not allow TLS	version	1 when negotiating the connec-<br/>
+		 tion.<br/>
+<br/>
+  --no-verify-hostname<br/>
+		 [SSL] Do not verify that the hostname matches the subject of<br/>
+		 the certificate presented by the server.<br/>
+<br/>
+  --no-verify-peer<br/>
+		 [SSL] Do not verify the peer certificate against trusted CAs.<br/>
+<br/>
+  -o	file, -output=file<br/>
+		 Set the output	file name to file. By default,	a ``pathname''<br/>
+		 is extracted from the specified URI, and its basename is used<br/>
+		 as the	name of	the output file. A file argument of `-' indi-<br/>
+		 cates that results are	to be directed to the standard output.<br/>
+		 If the	file argument is a directory, fetched file(s) will be<br/>
+		 placed	within the directory, with name(s) selected as in the<br/>
+		 default behaviour.<br/>
+<br/>
+  -P<br/>
+<br/>
+  -p, --passive<br/>
+		 Use passive FTP. These flags have no effect, since passive<br/>
+		 FTP is	the default, but are provided for compatibility	with<br/>
+		 earlier versions where	active FTP was the default. To	force<br/>
+		 active	mode, use the --no-passive flag	or set the<br/>
+		 FTP_PASSIVE_MODE environment variable to `NO'.<br/>
+<br/>
+  --referer=URL<br/>
+		 Specifies the referrer	URL to use for HTTP requests. If URL<br/>
+		 is set	to ``auto'', the document URL will be used as referrer<br/>
+		 URL.<br/>
+<br/>
+  -q, --quiet<br/>
+		 Quiet mode.<br/>
+<br/>
+  -R, --keep-output<br/>
+		 The output files are precious,	and should not be deleted<br/>
+		 under any circumstances, even if the transfer failed or was<br/>
+		 incomplete.<br/>
+<br/>
+  -r, --restart<br/>
+		 Restart a previously interrupted transfer. Note that the -m<br/>
+		 and -r	flags are mutually exclusive.<br/>
+<br/>
+  -S	bytes, --require-size=bytes<br/>
+		 Require the file size reported	by the server to match the<br/>
+		 specified value. If it does not, a message is	printed	and<br/>
+		 the file is not fetched. If the server does not support<br/>
+		 reporting file	sizes, this option is ignored and the file is<br/>
+		 fetched unconditionally.<br/>
+<br/>
+  -s, --print-size<br/>
+		 Print the size	in bytes of each requested file, without<br/>
+		 fetching it.<br/>
+<br/>
+  -T	seconds, --timeout=seconds<br/>
+		 Set timeout value to seconds.	Overrides the environment<br/>
+		 variables FTP_TIMEOUT for FTP transfers or HTTP_TIMEOUT for<br/>
+		 HTTP transfers	if set.<br/>
+<br/>
+  -U, --passive-portrange-default<br/>
+		 When using passive FTP, allocate the port for the data	con-<br/>
+		 nection from the low (default)	port range. See ip(4) for<br/>
+		 details on how	to specify which port range this corresponds<br/>
+		 to.<br/>
+<br/>
+  --user-agent=agent-string<br/>
+		 Specifies the User-Agent string to use	for HTTP requests.<br/>
+		 This can be useful when working with HTTP origin or proxy<br/>
+		 servers that differentiate between user agents.<br/>
+<br/>
+  -v, --verbose<br/>
+		 Increase verbosity level.<br/>
+<br/>
+  -w	seconds, --retry-delay=seconds<br/>
+		 When the -a flag is specified,	wait this many seconds between<br/>
+		 successive retries.<br/>
+<br/>
+  If	fetch receives a SIGINFO signal	(see the status	argument for stty(1)),<br/>
+  the current transfer rate statistics will be written to the standard<br/>
+  error output, in the same format as the standard completion message.<br/>
+<br/>
+ENVIRONMENT<br/>
+  FTP_TIMEOUT  Maximum time, in seconds, to	wait before aborting an	FTP<br/>
+		  connection.<br/>
+<br/>
+  HTTP_TIMEOUT Maximum time, in seconds, to	wait before aborting an	HTTP<br/>
+		  connection.<br/>
+<br/>
+  See fetch(3) for a	description of additional environment variables,<br/>
+  including FETCH_BIND_ADDRESS, FTP_LOGIN, FTP_PASSIVE_MODE,	FTP_PASSWORD,<br/>
+  FTP_PROXY,	ftp_proxy, HTTP_ACCEPT,	HTTP_AUTH, HTTP_PROXY, http_proxy,<br/>
+  HTTP_PROXY_AUTH, HTTP_REFERER, HTTP_USER_AGENT, NETRC, NO_PROXY,<br/>
+  no_proxy, SSL_CA_CERT_FILE, SSL_CA_CERT_PATH, SSL_CLIENT_CERT_FILE,<br/>
+  SSL_CLIENT_KEY_FILE, SSL_CRL_FILE,	SSL_ALLOW_SSL3,	SSL_NO_TLS1,<br/>
+  SSL_NO_TLS1_1, SSL_NO_TLS1_2, SSL_NO_VERIFY_HOSTNAME and<br/>
+  SSL_NO_VERIFY_PEER.<br/>
+<br/>
+EXIT STATUS<br/>
+  The fetch command returns zero on success,	or one on failure. If multi-<br/>
+  ple URLs are listed on the	command	line, fetch will attempt to retrieve<br/>
+  each one of them in turn, and will	return zero only if they were all suc-<br/>
+  cessfully retrieved.<br/>
+<br/>
+  If	the -i argument	is used	and the	remote file is not newer than the<br/>
+  specified file then the command will still	return success,	although no<br/>
+  file is transferred.<br/>
+<br/>
+SEE ALSO<br/>
+  fetch(3), phttpget(8)<br/>
+<br/>
+HISTORY<br/>
+  The fetch command appeared	in FreeBSD 2.1.5. This	implementation first<br/>
+  appeared in FreeBSD 4.1.<br/>
+<br/>
+AUTHORS<br/>
+  The original implementation of fetch was done by Jean-Marc	Zucconi<br/>
+  &lt;jmz@FreeBSD.org&gt;.	 It was	extensively re-worked for FreeBSD 2.2 by<br/>
+  Garrett Wollman &lt;wollman@FreeBSD.org&gt;, and	later completely rewritten to<br/>
+  use the fetch(3) library by Dag-Erling Smorgrav &lt;des@FreeBSD.org&gt; and<br/>
+  Michael Gmelin &lt;freebsd@grem.de&gt;.<br/>
+<br/>
+NOTES<br/>
+  The -b and	-t options are no longer supported and will generate warnings.<br/>
+  They were workarounds for bugs in other OSes which	this implementation<br/>
+  does not trigger.<br/>
+<br/>
+  One cannot	both use the -h, -c and	-f options and specify URLs on the<br/>
+  command line.</body></html>

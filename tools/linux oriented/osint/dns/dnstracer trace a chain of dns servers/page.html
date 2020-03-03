@@ -1,0 +1,97 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>dnstracer: trace a chain of DNS servers to the source</title>
+</head><body>	<br/>
+dnstracer(8)        General Commands Manual        dnstracer(8)<br/>
+<br/>
+<br/>
+<br/>
+NAME<br/>
+   dnstracer - trace a chain of DNS servers to the source<br/>
+<br/>
+SYNOPSIS<br/>
+   dnstracer [options] name<br/>
+<br/>
+DESCRIPTION<br/>
+   dnstracer determines where a given Domain Name Server (DNS) gets its<br/>
+   information from, and follows the chain of DNS servers back to the<br/>
+   servers which know the data.<br/>
+<br/>
+   Options are:<br/>
+<br/>
+   -c   Disable local caching.<br/>
+<br/>
+   -C   Enable negative caching.<br/>
+<br/>
+   -o   Enable overview of received answers at the end.<br/>
+<br/>
+   -q q&gt;u&gt;e&gt;r&gt;y&gt;c&gt;l&gt;a&gt;s&gt;s&gt;<br/>
+       Change the query-class, default is A. You can either specify a<br/>
+       number of the type (if you're brave) or one of the following<br/>
+       strings: a, aaaa, a6, soa, cname, hinfo, mx, ns, txt and ptr.<br/>
+<br/>
+   -r r&gt;e&gt;t&gt;r&gt;i&gt;e&gt;s&gt;<br/>
+       Number of retries for DNS requests, default 3.<br/>
+<br/>
+   -s s&gt;e&gt;r&gt;v&gt;e&gt;r&gt;<br/>
+       DNS server to use for the initial request, default is aquired<br/>
+       from the system. If a dot is specified (.), A.ROOT-SERVERS.NET<br/>
+       will be used.<br/>
+<br/>
+   -v   Be verbose on what sent or received.<br/>
+<br/>
+   -4   Use only IPv4 servers, don't query IPv6 servers (only available<br/>
+       when IPv6 support hasn't been disabled)<br/>
+<br/>
+   -S s&gt;o&gt;u&gt;r&gt;c&gt;e&gt;a&gt;d&gt;d&gt;r&gt;e&gt;s&gt;s&gt;<br/>
+       Use this as source-address for the outgoing packets.<br/>
+<br/>
+HOW IT WORKS<br/>
+   It sends the specified name-server a non-recursive request for the<br/>
+   name.<br/>
+<br/>
+   Non-recursive means: if the name-server knows it, it will return the<br/>
+   data requested. If the name-server doesn't know it, it will return<br/>
+   pointers to name-servers that are authoritive for the domain part in<br/>
+   the name or it will return the addresses of the root name-servers.<br/>
+<br/>
+   If the name server does returns an authoritative answer for the name,<br/>
+   the next server is queried. If it returns an non-authoritative answer<br/>
+   for the name, the name servers in the authority records will be<br/>
+   queried.<br/>
+<br/>
+   The program stops if all name-servers are queried.<br/>
+<br/>
+   Make sure the server you're querying doesn't do forwarding towards<br/>
+   other servers, as dnstracer is not able to detect this for you.<br/>
+<br/>
+   It detects so called lame servers, which are name-servers which has<br/>
+   been told to have information about a certain domain, but don't have<br/>
+   this information.<br/>
+<br/>
+EXAMPLES<br/>
+   Search for the A record of www.mavetju.org on your local nameserver:<br/>
+<br/>
+   dnstracer www.mavetju.org<br/>
+<br/>
+   Search for the MX record of mavetju.org on the root-nameservers:<br/>
+<br/>
+   dnstracer &quot;-s&quot; . &quot;-q&quot; mx mavetju.org<br/>
+<br/>
+   Search for the PTR record (hostname) of 212.204.230.141:<br/>
+<br/>
+   dnstracer &quot;-q&quot; ptr 141.230.204.212.in-addr.arpa<br/>
+<br/>
+   And for IPv6 addresses:<br/>
+<br/>
+   dnstracer &quot;-q&quot; ptr &quot;-s&quot; . &quot;-o&quot;<br/>
+   2.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.6.4.0.2.0.0.0.0.8.b.0.e.f.f.3.ip6.int<br/>
+<br/>
+SEE ALSO<br/>
+   ntptrace(8), traceroute(8), dig(1)<br/>
+<br/>
+AUTHOR<br/>
+   Edwin Groothuis, edwin@mavetju.org (http://www.mavetju.org)<br/>
+<br/>
+   See http://www.mavetju.org/contacts.php for mailing-lists.</body></html>

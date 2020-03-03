@@ -1,0 +1,52 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Attacking</title>
+</head><body>Enumeration - Tools<br/>
+Tnsping.exe – Included with Oracle Client<br/>
+Confirms the listener is up and running, DB status unknown<br/>
+TNS (Transparent Network Substrate) – Listener responsible for establishing and maintaining remote connections<br/>
+Tnscmd – www.jammed.com/~jwa/hacks/security/tnscmd<br/>
+Tnscmd – gathers TNS listener information<br/>
+Cqure – www.cqure.net/tools.jps?id=07<br/>
+OraclePWGuess – dictionary attack tool<br/>
+OracleQuery – sql query tool<br/>
+NGSSQuirrel for Oracle – www.nextgenss.com<br/>
+Oracle Database Server vulnerability scanner<br/>
+OraScan – www.nextgenss.com<br/>
+Audits Oracle Web Application Servers and Internet Content<br/>
+<br/>
+Enumeration<br/>
+Many default web pages can be used to enumerate server information<br/>
+http://oracleserver:&lt;port&gt;/perl/printenv<br/>
+Reveals Oracle installation directory<br/>
+Reveals Apache installation directory<br/>
+Reveals Operating System installation directory<br/>
+Reveals system ports<br/>
+Other sensitive information<br/>
+Global Gateway Settings - http://oracleserver:&lt;port&gt;/pls/simpledad/admin_/globalsettings.htm<br/>
+This is the PL/SQL Gateway for configuration Database Access<br/>
+Descriptors that specify how the PL/SQL Gateway connects to a database server to fulfill an HTTP request.<br/>
+This could allow a malicious user to Add, Delete, or Modify Database Access Descriptor settings:<br/>
+ Oracle Connection settings<br/>
+ Authentication Mode<br/>
+ File upload parameters<br/>
+<br/>
+Oracle Password Guesser – www.cqure.net <br/>
+<br/>
+Obtaining the Oracle client<br/>
+<b>Will allow you to connect to the Oracle Listener</b>.<br/>
+ The Oracle client is available from the Oracle site, 11g, etc.<br/>
+ Oracle 9.X client recommended for 9.X and 8.X<br/>
+ Oracle 8.X client required for 7.X database<br/>
+Provides command line and GUI.<br/>
+<br/>
+Configuring tnsnames.ora<br/>
+When you install the client, you will receive a default tnsnames.ora, this is required for connecting to the DB. Think of it as a hosts file in UNIX or Linux.<br/>
+Use the IP address and port number discovered during scanning phase.<br/>
+SID/Service_Name = database name<br/>
+<br/>
+Connecting to the Oracle Listener and enumerating default user accounts:<br/>
+The syntax for connecting to the database is as follows:<br/>
+ C:\oracle\ora90\bin&gt; sqlplus username/password@databasename<br/>
+Remember that this database name is related to the name in the tnsnames.ora file created earlier.</body></html>

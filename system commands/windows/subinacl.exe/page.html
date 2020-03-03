@@ -1,0 +1,27 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Subinacl.exe</title>
+</head><body>Install the msi somewhere and the copy the .exe<br/>
+C:\Program Files (x86)\Windows Resource Kits\Tools\subinacl.exe<br/>
+<br/>
+Exe is standalone once you have it<br/>
+<br/>
+<br/>
+USAGE<br/>
+subinacl.exe /keyreg &lt;registry key&gt; /display		Display permissions of registry key<br/>
+================================================================================<br/>
++KeyReg HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Vulnerable Service<br/>
+================================================================================<br/>
+/control=0x400 SE_DACL_AUTO_INHERITED-0x0400 <br/>
+/owner       =builtin\administrators<br/>
+/primary group   =system<br/>
+/perm. ace count  =10<br/>
+<b>/pace =everyone  ACCESS_ALLOWED_ACE_TYPE-0x0<br/>
+ CONTAINER_INHERIT_ACE-0x2   <br/>
+  Key and SubKey - Type of Access:<br/>
+</b><b> Full Control</b><br/>
+  Detailed Access Flags :<br/>
+ KEY_QUERY_VALUE-0x1    KEY_SET_VALUE-0x2     KEY_CREATE_SUB_KEY-0x4   <br/>
+ KEY_ENUMERATE_SUB_KEYS-0x8 KEY_NOTIFY-0x10      KEY_CREATE_LINK-0x20    DELETE-0x10000       <br/>
+ READ_CONTROL-0x20000    WRITE_DAC-0x40000     WRITE_OWNER-0x80000    </body></html>

